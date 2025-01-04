@@ -1,0 +1,47 @@
+*{
+  padding:0;
+  margin:0;
+  touch-action: none;
+}
+:not(:defined){
+  visibility: hidden;  
+}
+
+body{
+  --toolbar-height:3em;
+
+  --list-width:90vw;
+  --list-margin:2vw;
+  --extremity-padding:calc(calc(calc(100vw - var(--list-width)) * .5) - var(--list-margin));
+
+  --budget-entry-height:3em;
+}
+
+#container{
+  position: absolute;
+  width:100vw;
+  height:100vh;
+  overflow: hidden;
+
+  background-color: #4dc9a0;
+  background-image: url("./assets/pattern_hemp.svg"), linear-gradient(180deg,#acac, #efe);
+}
+.toolbar{
+  position:fixed;
+  display: flex;
+  width:100vw;
+  height:var(--toolbar-height);
+  z-index:50;
+}
+.content{
+  position:relative;
+  top:0;
+  left:0;
+  z-index:0;
+}
+.input{
+  position:fixed;
+  bottom:0;
+  left:0;
+  z-index:100;
+}

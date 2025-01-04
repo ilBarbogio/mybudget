@@ -1,0 +1,19 @@
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+/* ::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+} */
+
+*{
+  margin:0;
+  padding:0;
+}
+
+.toolbar{
+  /* view-transition-name: none; */
+}

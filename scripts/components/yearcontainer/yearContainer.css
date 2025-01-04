@@ -1,0 +1,16 @@
+.container{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  display:flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
+}
+
+.container .extremity-padder{
+  width:var(--extremity-padding);
+  flex-shrink:0;
+}
