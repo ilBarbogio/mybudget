@@ -24,7 +24,6 @@ body{
   overflow: hidden;
 
   background-color: #4dc9a0;
-  background-image: url("./assets/pattern_hemp.svg"), linear-gradient(180deg,#acac, #efe);
 }
 .toolbar{
   position:fixed;
