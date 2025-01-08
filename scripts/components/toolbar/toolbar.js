@@ -7,7 +7,7 @@ const template=
   <div class="strip">
     <div class="button" data-route="${pages.calendar}">C</div>
     <div class="button" data-route="${pages.filemanager}">F</div>
-    <div class="button" data-route="${pages.categorymanager}">c</div>
+    <div class="button" data-route="${pages.reportspage}">R</div>
     <div class="dove-tail">
       <div></div><div></div>
     </div>

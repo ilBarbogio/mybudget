@@ -1,4 +1,7 @@
 .container{
+  --category-icons-size:3em;
+  --category-icons-number:4;
+
   --record-input-height:3em;
   position:fixed;
   bottom:-100vh;
@@ -54,9 +57,35 @@
   height:2em;
 }
 
-.category-input{
-  width:90%;
+.category-display{
+  width:2em;
   height:2em;
+}
+
+.category-input{
+  justify-content: center;
+  align-items: center;
+  width:100vw;
+  height:100vh;
+  border:none;
+  background-color: transparent;
+
+  &:popover-open{
+    display:flex;
+    div{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding:.5em;
+      width:12em;
+      background-color: aquamarine;
+      border-radius:.5em;
+    }
+
+  }
+  &::backdrop{
+    backdrop-filter:blur(4px);
+  }
 }
 
 .cause-input{

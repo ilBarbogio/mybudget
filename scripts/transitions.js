@@ -13,8 +13,8 @@ function updateView(ev){
     case pages.filemanager:
       buildDestination=buildFileManagerPage
       break
-    case pages.categorymanager:
-      buildDestination=buildCategoryManagerPage
+    case pages.reportspage:
+      buildDestination=buildReportsPage
       break
     default: break
   }
@@ -82,20 +82,14 @@ export const buildFileManagerPage=async ()=>{
   state.currentPage=pages.filemanager
 }
 
-const buildCategoryManagerPage=()=>{
+const buildReportsPage=()=>{
   if(state.container){
     state.container.innerHTML=""//UNMOUNT OPTIONS PAGE
-    state.container.innerHTML=`
-    <div sytle="width:100%; height:24em; background-color:black">
-      ${(()=>{
-        let options=[]
-        for(let c of categories) options.push(`<p>${c.id} - ${c.label}</p>`)
-        return options.join("\n")
-      })()}
-    </div>
-    `
+    
+    let reportsPage=document.createElement("reports-page")
+    state.container.append(reportsPage)
 
-    state.currentPage=pages.categorymanager
+    state.currentPage=pages.reportspage
   }
 }
 

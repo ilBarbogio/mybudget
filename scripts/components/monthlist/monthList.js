@@ -12,7 +12,7 @@ const template=
     <div class="spacer"></div>
     <div class="footer"></div>
     <div class="actions">
-      <icon-button style="margin:.5em;" class="add-button" sides="4em 2em" icon="add"></icon-button>
+      <my-icon class="add-button" size="4em 2em" icon="add"></my-icon>
     </div>
     <div class="spacer"></div>
   </div>
@@ -55,12 +55,12 @@ export class MonthList extends HTMLElement{
     window.addEventListener(UPDATE_ENTRY_CONFIRM_EVENT,(ev)=>{
       if(ev.detail.date.split("-")[1]==this.getAttribute("month")) this.updateEntry(ev.detail)
     })
-    this.addButton.clickHandler=(ev)=>{
+    this.addButton.addEventListener("click",(ev)=>{
       const event=new CustomEvent(ADD_ENTRY_REQUEST_EVENT,{detail:{
         month:this.month
       }})
       window.dispatchEvent(event)
-    }
+    })
   }
 
   attributeChangedCallback(name, oldValue, newValue){
@@ -153,9 +153,9 @@ export class MonthList extends HTMLElement{
         else totals.negative+=value
         totals.total+=value
         totals={
-          positive:sanitizeNumber(totals.positive),
-          negative:sanitizeNumber(totals.negative),
-          total:sanitizeNumber(totals.total),
+          positive:sanitizeNumber(totals.positive??0),
+          negative:sanitizeNumber(totals.negative??0),
+          total:sanitizeNumber(totals.total??0),
         }
       }
 

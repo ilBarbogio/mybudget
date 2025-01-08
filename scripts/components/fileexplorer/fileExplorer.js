@@ -10,16 +10,24 @@ const template=
 `
   <style>@import url("./scripts/components/fileexplorer/fileExplorer.css")</style>
   <div class="container">
-    <div class="file-list"></div>
-    <button class="load-button">load</button>
-    <br><br>
-    <form>
-      <input name="user" type="text"/>
-      <input name="year" type="text"/>
-      <button type="submit">create</button>
-    </form>
-    <br>
-    <file-input></file-input>
+    <div class="glass-card file-list">
+      <div class="header">File salvati</div>
+      <div class="file-results"></div>
+      <button class="load-button">load</button>
+    </div>
+    <div class="glass-card file-creation">
+      <div class="header">Gestione file</div>
+      <div class="header sub">Crea file</div>
+      <form>
+        <input name="user" type="text"/>
+        <input name="year" type="text"/>
+        <button type="submit">create</button>
+      </form>
+      
+      <div class="header sub">Carica file</div>
+      <file-input></file-input>
+    </div>
+    
   </div>
 `
 export class FileExplorer extends HTMLElement{
@@ -32,7 +40,7 @@ export class FileExplorer extends HTMLElement{
     this.shadow.innerHTML=template
 
     this.container=this.shadow.querySelector(".container")
-    this.list=this.container.querySelector("div.file-list")
+    this.list=this.container.querySelector("div.file-results")
     
     this.loadButton=this.container.querySelector("button.load-button")
 
@@ -69,12 +77,15 @@ export class FileExplorer extends HTMLElement{
     this.list.innerHTML=""
     if(state.availableFiles.length==0) this.list.innerHTML=`<p>Nessun file salvato</p>`
     else for(let f of state.availableFiles){
-      let entry=document.createElement("p")
+      let entry=document.createElement("div")
       let text=document.createElement("span")
       text.innerHTML=f
       entry.append(text)
-      let loadButton=document.createElement("button")
-      loadButton.innerHTML="scarica"
+
+      let loadButton=document.createElement("my-icon")
+      loadButton.classList.add("btn","close")
+      loadButton.setAttribute("size","2em")
+      loadButton.setAttribute("icon","dots")
       loadButton.addEventListener("click",async()=>{
         let response=await readRecordFile(f)
         console.log("RESULT  ",response)
@@ -84,8 +95,12 @@ export class FileExplorer extends HTMLElement{
         }
       })
       entry.append(loadButton)
-      let deleteButton=document.createElement("button")
-      deleteButton.innerHTML="elimina"
+      
+      
+      let deleteButton=document.createElement("my-icon")
+      deleteButton.classList.add("btn","close")
+      deleteButton.setAttribute("size","2em")
+      deleteButton.setAttribute("icon","trash")
       deleteButton.addEventListener("click",async()=>{
         if(confirm("Remove for real?")) await removeRecordFile(f)
       })

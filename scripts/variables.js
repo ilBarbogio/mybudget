@@ -38,34 +38,28 @@ export const LS_KEY_CURRENT_FILE="currentFile"
 export const CURRENCY_SYMBOL="€"
 
 
-class State{
-  constructor(){
-    this.container=document.getElementById("container")
-    this.toolbar=document.getElementsByTagName("main-toolbar")  
-  }
-}
-
 
 export const categories=[
-  {id:0, label:"casa"},
-  {id:1, label:"spesa"},
-  {id:2, label:"animali"},
-  {id:3, label:"auto"},
-  {id:4, label:"arch. work"},
-  {id:5, label:"tasse"},
-  {id:6, label:"banca"},
-  {id:7, label:"salute"},
-  {id:8, label:"hobbies"},
-  {id:9, label:"vacanze"},
-  {id:10, label:"regali"},
-  {id:11, label:"cura persona"},
-  {id:12, label:"cibo fuori"},
+  {id:0, icon:"casa", label:"casa"},
+  {id:1, icon:"spesa", label:"spesa"},
+  {id:2, icon:"gatto", label:"animali"},
+  {id:3, icon:"macchina", label:"auto"},
+  {id:4, icon:"architettura", label:"arch. work"},
+  {id:5, icon:"uscite", label:"tasse"},
+  {id:6, icon:"banca", label:"banca"},
+  {id:7, icon:"salute", label:"salute"},
+  {id:8, icon:"hobby", label:"hobbies"},
+  {id:9, icon:"viaggi", label:"vacanze"},
+  {id:10, icon:"regali", label:"regali"},
+  {id:11, icon:"salute", label:"cura persona"},
+  {id:12, icon:"cibo", label:"cibo fuori"},
 ]
 
 export const pages={
   calendar:"calendar",
   filemanager:"filemanager",
-  categorymanager:"categorymanager"
+  reportspage:"reportspage",
+  categorymanager:"categorymanager",
 }
 
 export const state={

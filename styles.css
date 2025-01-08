@@ -4,7 +4,8 @@
   touch-action: none;
 }
 :not(:defined){
-  visibility: hidden;  
+  visibility: hidden;
+  opacity:0;
 }
 
 body{
@@ -24,6 +25,8 @@ body{
   overflow: hidden;
 
   background-color: #4dc9a0;
+  /* background-image: radial-gradient(circle at 25% 75%, rgb(255, 83, 83), rgb(43, 176, 43), rgb(57, 57, 213), yellow); */
+  background-image: url("./assets/pattern_hemp.svg");
 }
 .toolbar{
   position:fixed;
