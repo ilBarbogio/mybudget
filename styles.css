@@ -9,6 +9,12 @@
 }
 
 body{
+  font-family: "Roboto", serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings:"wdth" 100;
+  
   --toolbar-height:3em;
 
   --list-width:90vw;
