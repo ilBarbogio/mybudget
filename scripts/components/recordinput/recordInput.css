@@ -1,0 +1,93 @@
+@import "../resets.css";
+
+.container{
+  --category-icons-size:3em;
+  --category-icons-number:4;
+
+  --record-input-height:3em;
+  position:fixed;
+  bottom:-100vh;
+  width:100%;
+  height:100vh;
+
+  transition: bottom .5s, background-color 1s;
+
+  background-color: #ffffff66;
+}
+.container.open{
+  bottom:0;
+}
+.container.positive{
+  background-color:  #3eff3e66;
+}
+.container.negative{
+  background-color:  #ffb6c166;
+}
+.input-container{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  width:fit-content;
+  min-width:75vw;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content: stretch;
+  padding:1em;
+  gap:.5em;
+  border-radius:8px;
+  background-color: white;
+  border:1px solid gray;
+}
+
+
+.first-row,
+.last-row{
+  display:flex;
+  gap:.5em;
+  width:80%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button{
+  &.save,
+  &.close{
+    width:4em;
+  }
+}
+
+.number-input{
+  width:90%;
+  height:2em;
+}
+
+.category-display{
+  width:2em;
+  height:2em;
+}
+
+.category-input{
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  width:13em;
+  border-radius:.5em;
+
+  &::backdrop{
+    backdrop-filter:blur(4px);
+  }
+}
+
+.cause-input{
+  width:90%;
+}
+
+.date-input{
+}
+
+.button.save{
+}
+.button.close{
+}
