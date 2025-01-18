@@ -1,16 +1,20 @@
-import { NAVIGATE, pages, state } from "../../variables.js"
+import { state } from "../../data/state.js"
+import { NAVIGATE, pages } from "../../variables.js"
 
 const template=
 `
   <style>@import url("./scripts/components/toolbar/toolbar.css")</style>
   <div class="backdrop"></div>
   <div class="strip">
-    <div class="button" data-route="${pages.calendar}">C</div>
-    <div class="button" data-route="${pages.filemanager}">F</div>
-    <div class="button" data-route="${pages.reportspage}">R</div>
-    <div class="dove-tail">
-      <div></div><div></div>
-    </div>
+    <button class="circle-button">
+      <my-icon icon="calendar" size="3em" data-route="${pages.calendar}"></my-icon>
+    </button>
+    <button class="circle-button">
+      <my-icon icon="folder" size="3em" data-route="${pages.filemanager}"></my-icon>
+    </button>
+    <button class="circle-button">
+      <my-icon icon="chart" size="3em" data-route="${pages.reportspage}"></my-icon>
+    </button>
   </div>
   <div class="sensible-area"></div>
   
@@ -41,66 +45,21 @@ export class MainToolbar extends HTMLElement{
     this.area=this.shadow.querySelector(".sensible-area")
     this.backdrop=this.shadow.querySelector(".backdrop")
     this.strip=this.shadow.querySelector(".strip")
-    this.buttons=this.shadow.querySelectorAll(".button")
+    this.buttons=this.strip.querySelectorAll("button.circle-button")
     for(let b of this.buttons) b.addEventListener("click",this.buttonClick)
 
     this.setupAreaListeners()
   }
 
   setupAreaListeners(){
-    // this.dragging=false
-    // this.dragStart=undefined
-    // this.drangHandle=undefined
-    // this.maxDragDistance=200
-    // this.xTolerance=150
-
-    // const dragOngoing=(ev)=>{
-    //   if(this.dragging){
-    //     let currentPoint=[ev.clientX,ev.clientY]
-    //     let distX=Math.abs(this.dragStart[0]-currentPoint[0])
-    //     let distY=Math.abs(this.dragStart[1]-currentPoint[1])
-    //     if(distX<=this.xTolerance){
-    //       this.dragDistance=distY
-    //       if(distY>this.maxDragDistance) dragEnd(ev)
-    //     }else dragEnd(ev)
-    //   }
-    // }
-    // const dragEnd=(ev)=>{
-    //   if(this.dragging){
-    //     let endPoint=[ev.clientX,ev.clientY]
-    //     let distX=Math.abs(this.dragStart[0]-endPoint[0])
-    //     let distY=Math.abs(this.dragStart[1]-endPoint[1])
-    //     if(distX<=this.xTolerance && distY>this.maxDragDistance) this.buttonsVisible=true
-        
-    //     this.dragging=false
-    //     this.dragStart=undefined
-    //     // this.dragDistance=0
-  
-    //     window.removeEventListener("pointermove",dragEnd)
-    //     window.removeEventListener("pointerup",dragEnd)
-    //     window.removeEventListener("pointercancel",dragEnd)}
-    // }
-
-    // this.area.addEventListener("pointerdown",(ev)=>{
-    //   if(!this.dragging){
-    //     this.dragging=true
-    //     this.dragStart=[ev.clientX,ev.clientY]
-    //     this.dragDistance=0
-
-    //     window.addEventListener("pointermove",dragOngoing)
-    //     window.addEventListener("pointerup",dragEnd)
-    //     window.addEventListener("pointercancel",dragEnd)
-    //   }
-    // })
 
     this.area.addEventListener("click",(ev)=>{
       if(this.open) this.hideButtons()
-        else this.showButtons()
+      else this.showButtons()
     })
   }
 
   showButtons=()=>{
-    console.log(state.currentPage)
     this.open=true
     this.area.style.display="none"
     this.strip.style.top=`var(--top-showing)`
@@ -109,8 +68,9 @@ export class MainToolbar extends HTMLElement{
     this.backdrop.addEventListener("pointerdown",this.hideButtons)
 
     for(let b of this.buttons){
-      if(b.dataset.route==state.currentPage) b.classList.add("disabled")
-      else b.classList.remove("disabled")
+      let icon=b.querySelector("my-icon")
+      if(icon.dataset.route==state.currentPage) b.setAttribute("disabled",true)
+      else b.removeAttribute("disabled")
     }
   }
   hideButtons=()=>{
@@ -124,12 +84,14 @@ export class MainToolbar extends HTMLElement{
   
   buttonClick=(ev)=>{
     let route=ev.target.dataset.route
-    let rect=ev.target.getBoundingClientRect()
+    if(!route) route=ev.target.querySelector("my-icon")?.dataset?.route
     
-    let event=new CustomEvent(NAVIGATE,{detail:{route,rect}})
-    this.shadow.getRootNode().host.dispatchEvent(event)
+    if(route){
+      let event=new CustomEvent(NAVIGATE,{detail:{route}})
+      this.shadow.getRootNode().host.dispatchEvent(event)
 
-    this.hideButtons()
+      this.hideButtons()
+    }
   }
 
   disconnectedCallback(){}

@@ -1,6 +1,8 @@
+@import "../resets.css";
+
 :host{
   --area-diameter:6em;
-  --area-left:1em;
+  --area-left:var(--extremity-padding);
   --button-diameter:3em;
   --button-timing:.125s;
 
@@ -17,6 +19,8 @@
   left:0;
   width:0;
   height:0;
+
+  filter: drop-shadow(1px 1px 2px black);
 }
 
 .sensible-area{
@@ -45,9 +49,11 @@
   left:calc(var(--area-left) + calc(.5 * var(--area-diameter)));
   transform:translate(-50%, 0);
   background-color: var(--strip-color);
+  background-image: url("../../../assets/black-linen.png");
+  clip-path: polygon(0 0, 0 100%, 50% calc(100% - 1.5em), 100% 100%, 100% 0);
 
   box-sizing: border-box;
-  height: calc(calc(var(--n-buttons) + 2) * var(--button-diameter));
+  height: calc(calc(var(--n-buttons) + 2.5) * var(--button-diameter));
   width:var(--button-diameter);
   padding:calc(.5 * var(--button-diameter)) 0;
 
@@ -56,46 +62,13 @@
   gap:calc(.5 * var(--button-diameter));
 
   transition: var(--button-timing) top ease-in;
+
   
-  .button{
+  .circle-button{
+
     position:relative;
-    box-sizing: border-box;
-    width:var(--button-diameter);
-    height:var(--button-diameter);
-    flex-shrink:0;
+    aspect-ratio: 1;
+    width:100%;
     border-radius: 50%;
-    background-color: lightseagreen;
-
-    text-align: center;
-    font-weight: bold;
-    line-height:var(--button-diameter);
-
-    &.disabled{
-      opacity:.5;
-      pointer-events: none;
-    }
-  }
-
-  .dove-tail{
-    display:flex;
-
-    div{
-      width:0;
-      height:0;
-
-      &:nth-child(1){
-        border-top:calc(.25 * var(--button-diameter)) solid var(--strip-color);
-        border-right:calc(.25 * var(--button-diameter)) solid transparent;
-        border-bottom:calc(.25 * var(--button-diameter)) solid transparent;
-        border-left:calc(.25 * var(--button-diameter)) solid var(--strip-color);
-      
-      }
-      &:nth-child(2){
-        border-top:calc(.25 * var(--button-diameter)) solid var(--strip-color);
-        border-right:calc(.25 * var(--button-diameter)) solid var(--strip-color);
-        border-bottom:calc(.25 * var(--button-diameter)) solid transparent;
-        border-left:calc(.25 * var(--button-diameter)) solid transparent;
-      }
-    }
   }
 }

@@ -1,10 +1,6 @@
-import {
-  readRecordFile, connectMain, createRecordFile,
-  setupListeners as setupDataListeners
-} from "./scripts/data/opfsdata.js"
-import { state, LOADED_DATA_FROM_FILE, LS_KEY_CURRENT_FILE } from "./scripts/variables.js"
-import { buildCalendarPage, buildFileManagerPage } from "./scripts/transitions.js"
-import { readDiskData } from "./scripts/data/files.js"
+import { setupState, setupStateListeners, state } from "./scripts/data/state.js"
+import { LOADED_DATA_FROM_FILE, LS_KEY_CURRENT_FILE, MONTH_HIGHLIGHTED, seasonColors } from "./scripts/variables.js"
+import { buildCalendarPage, buildFileManagerPage, buildReportsPage } from "./scripts/transitions.js"
 
 const registerServiceWorker = async () => {
   if("serviceWorker" in navigator){
@@ -27,19 +23,25 @@ const registerServiceWorker = async () => {
 
 const appSetup=async()=>{
   // await registerServiceWorker()
-  state.container=document.getElementById("container")
-  
-  setupDataListeners()
+  // state.container=document.getElementById("container")
+  await setupState()
 
+  setupStateListeners()
 
-  if(localStorage.getItem(LS_KEY_CURRENT_FILE)) state.currentFile=localStorage.getItem(LS_KEY_CURRENT_FILE)
-  console.log(state.currentFile)
   if(state.currentFile){
     // await buildCalendarPage()
-    await buildFileManagerPage()
+    // await buildFileManagerPage()
+    await state.loadFile()
+    await buildReportsPage()
   }else{
     await buildFileManagerPage()
   }
+
+  //listen to visible month for background color changes
+  window.addEventListener(MONTH_HIGHLIGHTED,(ev)=>{
+    document.getElementById("container").style.backgroundColor=seasonColors[ev.detail].background
+    // document.getElementById("container").style.backgroundImage=`url("${seasonColors[ev.detail].backgroundImage}")`
+  })
 }
 
 appSetup()

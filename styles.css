@@ -24,8 +24,10 @@ body{
   height:100vh;
   overflow: hidden;
 
+  transition:background-color .5s;
+  /* , background-image .5s; */
+
   background-color: #4dc9a0;
-  /* background-image: radial-gradient(circle at 25% 75%, rgb(255, 83, 83), rgb(43, 176, 43), rgb(57, 57, 213), yellow); */
   background-image: url("./assets/pattern_hemp.svg");
 }
 .toolbar{

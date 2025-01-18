@@ -1,4 +1,5 @@
-import { ADD_ENTRY_REQUEST_EVENT, ADD_ENTRY_CONFIRM_EVENT, DELETE_ENTRY_CONFIRM_EVENT, UPDATE_ENTRY_CONFIRM_EVENT } from "../../variables.js"
+import { state } from "../../data/state.js"
+import { seasonColors, DELETE_ENTRY_EVENT, ADD_ENTRY_EVENT, UPDATE_ENTRY_EVENT, EVENT_ACTIONS } from "../../variables.js"
 
 const sanitizeNumber=(value)=>{
   return Math.floor(value*100)/100
@@ -9,16 +10,19 @@ const template=
   <div class="container">
     <div class="header"></div>
     <div class="list"></div>
-    <div class="spacer"></div>
+    
     <div class="footer"></div>
+
     <div class="actions">
-      <my-icon class="add-button" size="4em 2em" icon="add"></my-icon>
+      <button class="add-button">
+        <my-icon size="6em 2em" icon="add"></my-icon>
+      </button>
     </div>
     <div class="spacer"></div>
   </div>
 `
 export class MonthList extends HTMLElement{
-  static observedAttributes=["month","year"]
+  static observedAttributes=["month","year","colorindex"]
 
   set records(records){
     this._records=records
@@ -43,20 +47,22 @@ export class MonthList extends HTMLElement{
 
     this.mounted=true
     this.setupListeners()
+    this.applyMonthColors(+this.month-1)
   }
 
   setupListeners(){
-    window.addEventListener(DELETE_ENTRY_CONFIRM_EVENT,(ev)=>{
-      this.deleteEntry(ev.detail.id)
+    window.addEventListener(DELETE_ENTRY_EVENT,(ev)=>{
+      if(ev.detail.action==EVENT_ACTIONS.confirm) this.deleteEntry(ev.detail.id)
     })
-    window.addEventListener(ADD_ENTRY_CONFIRM_EVENT,(ev)=>{
-      if(ev.detail.date.split("-")[1]==this.getAttribute("month")) this.addEntry(ev.detail)
+    window.addEventListener(ADD_ENTRY_EVENT,(ev)=>{
+      if(ev.detail.action==EVENT_ACTIONS.confirm && ev.detail.record.date.split("-")[1]==this.getAttribute("month")) this.addEntry(ev.detail.record)
     })
-    window.addEventListener(UPDATE_ENTRY_CONFIRM_EVENT,(ev)=>{
-      if(ev.detail.date.split("-")[1]==this.getAttribute("month")) this.updateEntry(ev.detail)
+    window.addEventListener(UPDATE_ENTRY_EVENT,(ev)=>{
+      if(ev.detail.action==EVENT_ACTIONS.confirm && ev.detail.record.date.split("-")[1]==this.getAttribute("month")) this.updateEntry(ev.detail.record)
     })
     this.addButton.addEventListener("click",(ev)=>{
-      const event=new CustomEvent(ADD_ENTRY_REQUEST_EVENT,{detail:{
+      const event=new CustomEvent(ADD_ENTRY_EVENT,{detail:{
+        action:EVENT_ACTIONS.request,
         month:this.month
       }})
       window.dispatchEvent(event)
@@ -67,6 +73,9 @@ export class MonthList extends HTMLElement{
     switch(name){
       case "month":
         this.month=newValue
+        break
+      case "colorindex":
+        // this.applyMonthColors(newValue)
         break
       case "year":
         this.year=newValue
@@ -79,6 +88,11 @@ export class MonthList extends HTMLElement{
     let date=new Date(`${this.year}-${this.month}-01`)
     let monthName=date.toLocaleDateString("it",{month:"long"})
     this.header.innerHTML=monthName
+
+    let year=document.createElement("span")
+    year.className="year"
+    year.innerHTML=state.year
+    this.header.append(year)
 
 
     this.list.innerHTML=""
@@ -108,6 +122,7 @@ export class MonthList extends HTMLElement{
   }
 
   addEntry(record){
+    console.log(record)
     this._records.push(record)
     this.updateTotals()
     
@@ -165,6 +180,12 @@ export class MonthList extends HTMLElement{
     }
   }
 
+  applyMonthColors(index){
+    if(index!==undefined && this.month!==undefined && this.container){
+      this.container.style.backgroundColor=seasonColors[index].month
+      this.container.style.borderColor=seasonColors[index].montBorder
+    }
+  }
   disconnectedCallback(){
     this.remove()
   }

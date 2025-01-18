@@ -20,6 +20,7 @@ export class MyIcon extends HTMLElement{
 
     if(this.getAttribute("customStyle")) this.style=this.getAttribute("customStyle")
     
+    this.applySize(this.getAttribute("size"))
     this.applyColor(this.getAttribute("color"))
     this.composeSvg(this.getAttribute("icon"))
     this.svg.style.opacity=1
@@ -51,7 +52,6 @@ export class MyIcon extends HTMLElement{
     }
     
     if(this.svg && svgContent){
-      if(translate) this.svg.setAttribute("viewBox","0 -960 1000 1000")
       this.svg.innerHTML=svgContent
     }
   }
@@ -63,6 +63,7 @@ export class MyIcon extends HTMLElement{
   }
 
   applySize(size){
+    if(!size) size="2em"
     if(size.includes(" ")) size=size.split(" ")
     else size=[size,size]
     this.style.width=size[0]

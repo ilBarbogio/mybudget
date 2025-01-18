@@ -1,3 +1,5 @@
+@import "../resets.css";
+
 .container{
   position:relative;
   display:grid;
@@ -36,31 +38,6 @@
   line-height: 1.5em;
 }
 
-.category-popover{
-  flex-direction:column;
-  justify-content: center;
-  align-items: center;
-  width:100vw;
-  height:100vh;
-  border:none;
-  background-color: transparent;
-
-  &:popover-open{
-    display:flex;
-    div{
-      background-color: aquamarine;
-      border-radius:.5em;
-      padding:.25em .5em;
-
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(158, 255, 221, 0.3);
-    }
-  }
-  &::backdrop{
-    backdrop-filter:blur(4px);
-  }
-}
-
 .value{
   white-space: nowrap;
   grid-column:3;
@@ -81,38 +58,4 @@
   align-items: center;
   gap:.5em;
   padding:0 .25em;
-}
-
-button{
-  width:calc(.75 * var(--budget-entry-height));
-  height:calc(.75 * var(--budget-entry-height));
-  padding:0;
-  margin:calc(.125 * var(--budget-entry-height));
-}
-
-.delete-popover{
-  flex-direction:column;
-  justify-content: center;
-  align-items: center;
-  width:100vw;
-  height:100vh;
-  border:none;
-  background-color: transparent;
-
-  &:popover-open{
-    display:flex;
-
-    div{
-      background-color: aquamarine;
-      border-radius:.5em;
-      padding:.25em .5em;
-      height:fit-content;
-      width:fit-content;
-    }
-  }
-  &::backdrop{
-    user-select: none;
-    pointer-events: none;
-    backdrop-filter:blur(4px);
-  }
 }

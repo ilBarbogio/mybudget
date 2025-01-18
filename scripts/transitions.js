@@ -1,5 +1,5 @@
-import { state, NAVIGATE, LS_KEY_CURRENT_FILE, LOADED_DATA_FROM_FILE, pages, categories } from "./variables.js"
-import { readRecordFile } from "./data/opfsdata.js"
+import { state } from "./data/state.js"
+import { NAVIGATE, LS_KEY_CURRENT_FILE, LOADED_DATA_FROM_FILE, pages, categories } from "./variables.js"
 
 function updateView(ev){
   let page=ev.route
@@ -19,78 +19,41 @@ function updateView(ev){
     default: break
   }
   const transition = document.startViewTransition(buildDestination)
-
-  // if(ev.clientX!==undefined && ev.clientY!==undefined){
-  //   const x = ev?.clientX ?? innerWidth / 2
-  //   const y = ev?.clientY ?? innerHeight / 2
-  //   // Get the distance to the furthest corner
-  //   const endRadius = Math.hypot(
-  //     Math.max(x, innerWidth - x),
-  //     Math.max(y, innerHeight - y),
-  //   )
-
-  //   transition.ready.then(() => {
-  //     // Animate the root's new view
-  //     document.documentElement.animate(
-  //       {
-  //         clipPath: [
-  //           `circle(0 at ${x}px ${y}px)`,
-  //           `circle(${endRadius}px at ${x}px ${y}px)`,
-  //         ],
-  //       },
-  //       {
-  //         duration: 500,
-  //         easing: "ease-in",
-  //         // Specify which pseudo-element to animate
-  //         pseudoElement: "::view-transition-new(root)",
-  //       },
-  //     )
-  //   })
-  // }
 }
 
 export const buildCalendarPage=async ()=>{
-  let lastCurrentFile=localStorage.getItem(LS_KEY_CURRENT_FILE)
-  if(lastCurrentFile){
-    const response=await readRecordFile(lastCurrentFile)
-    if(response.result){
-      
-      state.container.innerHTML=""
+  const response=await state.loadFile()
   
-      state.yearContainer=document.createElement("year-container")
-      state.yearContainer.classList.add("content")
-      state.yearContainer.setAttribute("year",state.year)
-      state.container.append(state.yearContainer)
-      
-      state.yearContainer.data=state.records
+  if(response.result){
+    state.elements.container.innerHTML=""
 
-      state.currentPage=pages.calendar
-    }
+    state.elements.yearContainer=document.createElement("year-container")
+    state.elements.yearContainer.classList.add("content")
+    state.elements.yearContainer.setAttribute("year",state.year)
+    state.elements.container.append(state.elements.yearContainer)
+
+    state.elements.yearContainer.data=state.records
+
+    state.currentPage=pages.calendar
   }
-
-  
-
-  
 }
 
 export const buildFileManagerPage=async ()=>{
-  state.container.innerHTML=""
+  state.elements.container.innerHTML=""
 
   let fileExplorer=document.createElement("file-explorer")
-  state.container.append(fileExplorer)
+  state.elements.container.append(fileExplorer)
 
   state.currentPage=pages.filemanager
 }
 
-const buildReportsPage=()=>{
-  if(state.container){
-    state.container.innerHTML=""//UNMOUNT OPTIONS PAGE
+export const buildReportsPage=()=>{
+  state.elements.container.innerHTML=""
     
-    let reportsPage=document.createElement("reports-page")
-    state.container.append(reportsPage)
+  let reportsPage=document.createElement("reports-page")
+  state.elements.container.append(reportsPage)
 
-    state.currentPage=pages.reportspage
-  }
+  state.currentPage=pages.reportspage
 }
 
 

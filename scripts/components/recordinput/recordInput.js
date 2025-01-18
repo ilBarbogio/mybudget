@@ -1,7 +1,8 @@
 import {
-  ADD_ENTRY_EVENT, ADD_ENTRY_REQUEST_EVENT, ADD_ENTRY_CONFIRM_EVENT,
-  UPDATE_ENTRY_EVENT, UPDATE_ENTRY_REQUEST_EVENT, UPDATE_ENTRY_CONFIRM_EVENT,
-  categories
+  ADD_ENTRY_EVENT,
+  UPDATE_ENTRY_EVENT,
+  categories,
+  EVENT_ACTIONS
 } from "../../variables.js"
 
 const template=
@@ -10,7 +11,7 @@ const template=
   <div class="container">
     <div class="input-container">
       <div class="first-row">
-        <my-icon class="sign button" size="2em" icon="subtract" color="red"></my-icon>
+        <my-icon class="sign button" icon="subtract" color="red"></my-icon>
         <input class="number-input" type="number" min=0 step=.01/>
         <div class="category-display">
           <div></div>
@@ -22,12 +23,16 @@ const template=
       <textarea class="cause-input"></textarea>
 
       <div class="last-row">
-        <my-icon class="save button" size="2em" icon="check"></my-icon>
-        <my-icon class="close button" size="2em" icon="close"></my-icon>
+        <button class="save button">
+          <my-icon icon="check"></my-icon>
+        </button>
+        <button class="close button">
+          <my-icon icon="close"></my-icon>
+        </button>
       </div>
     </div>
 
-    <div class="category-input" popover></div>
+    <dialog class="category-input"></dialog>
 
   </div>
 `
@@ -66,7 +71,7 @@ export class RecordInput extends HTMLElement{
 
     this.container=this.shadow.querySelector(".container")
     this.inputContainer=this.container.querySelector(".input-container")
-    this.signButton=this.inputContainer.querySelector("my-icon.sign.button")
+    this.signButton=this.inputContainer.querySelector(".sign.button")
     this.valueInput=this.inputContainer.querySelector("input.number-input")
 
     this.categoryDisplay=this.inputContainer.querySelector(".category-display")
@@ -74,8 +79,8 @@ export class RecordInput extends HTMLElement{
     
     this.dateInput=this.inputContainer.querySelector("input[type=date]")
     this.textArea=this.inputContainer.querySelector("textarea")
-    this.saveButton=this.inputContainer.querySelector("my-icon.save.button")
-    this.closeButton=this.inputContainer.querySelector("my-icon.close.button")
+    this.saveButton=this.inputContainer.querySelector(".save.button")
+    this.closeButton=this.inputContainer.querySelector(".close.button")
 
     this._action=undefined
     this._sign=1
@@ -88,29 +93,36 @@ export class RecordInput extends HTMLElement{
   }
 
   setupListeners(){
-    window.addEventListener(ADD_ENTRY_REQUEST_EVENT,(ev)=>{
-      this._action=ADD_ENTRY_EVENT
-      this._recordId=undefined
-      this.value=0
-      this.sign=1
-      this.category=undefined
-      let currentDate=new Date()
-      this.dateInput.value=`${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2,"0")}-${currentDate.getDate().toString().padStart(2,"0")}`
-      this.container.classList.toggle("open")
+    window.addEventListener(ADD_ENTRY_EVENT,(ev)=>{
+      if(ev.detail.action==EVENT_ACTIONS.request){
+        this._action=ADD_ENTRY_EVENT
+        this._recordId=undefined
+        this.value=0
+        this.sign=1
+        this.category=undefined
+        let currentDate=new Date()
+        this.dateInput.value=`${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2,"0")}-${currentDate.getDate().toString().padStart(2,"0")}`
+        this.container.classList.toggle("open")
+      }else if(ev.detail.action==EVENT_ACTIONS.confirm){
+        this.close()
+      }
     })
-    window.addEventListener(UPDATE_ENTRY_REQUEST_EVENT,(ev)=>{
-      console.log(ev.detail)
-      this._action=UPDATE_ENTRY_EVENT
-      this._recordId=ev.detail.id
-      this.value=Math.abs(ev.detail.value)
-      this.sign=ev.detail.value>=0?1:-1
-      this.dateInput.value=ev.detail.date
-      this.textArea.value=ev.detail.cause
-      this.category=ev.detail?.category
-      this.container.classList.toggle("open")
+    
+    window.addEventListener(UPDATE_ENTRY_EVENT,(ev)=>{
+      if(ev.detail.action==EVENT_ACTIONS.request){
+        this._action=UPDATE_ENTRY_EVENT
+        this._recordId=ev.detail.record.id
+        this.value=Math.abs(ev.detail.record.value)
+        this.sign=ev.detail.record.value>=0?1:-1
+        this.dateInput.value=ev.detail.record.date
+        this.textArea.value=ev.detail.record.cause
+        this.category=ev.detail.record?.category
+        this.container.classList.toggle("open")
+      }else if(ev.detail.action==EVENT_ACTIONS.confirm){
+        this.close()
+      }
     })
-    window.addEventListener(ADD_ENTRY_CONFIRM_EVENT,()=>{this.close()})
-    window.addEventListener(UPDATE_ENTRY_CONFIRM_EVENT,()=>{this.close()})
+
     this.container.addEventListener("click",(ev)=>{
       this.close()
     })
@@ -132,7 +144,6 @@ export class RecordInput extends HTMLElement{
 
 
     this.categoryInput.addEventListener("click",(ev)=>{
-      console.log(ev)
       ev.stopPropagation()
       for(let t of ev.composedPath()){
         if(t.tagName && t.tagName.toLowerCase()=="my-icon"){
@@ -145,34 +156,23 @@ export class RecordInput extends HTMLElement{
         }
         if(t==ev.currentTarget) break
       }
-      this.categoryInput.hidePopover()
+      this.categoryInput.close()
     })
     this.categoryDisplay.addEventListener("click",(ev)=>{
-      this.categoryInput.togglePopover()
+      this.categoryInput.showModal()
     })
-    // for(let i of this.categoryIcons.children) i.addEventListener("click",(ev)=>{
-    //   ev.stopPropagation()
-    //   this.category=ev.target.dataset.icon
-    //   this.categoryInput.classList.remove("open")
-    // })
-    // this.categoryClose.addEventListener("click",(ev)=>{
-    //   ev.stopPropagation()
-    //   this.categoryInput.classList.remove("open")
-    // })
-    // this.categoryDelete.addEventListener("click",(ev)=>{
-    //   ev.stopPropagation()
-    //   this.category=undefined
-    //   this.categoryInput.classList.remove("open")
-    // })
 
     this.saveButton.addEventListener("click",(ev)=>{
       let detail={
-        value:this.value,
-        date:this.dateInput.value,
-        cause:this.textArea.value,
-        category:this._category
+        action:EVENT_ACTIONS.confirm,
+        record:{
+          value:this.value,
+          date:this.dateInput.value,
+          cause:this.textArea.value,
+          category:this._category
+        }
       }
-      if(this._action==UPDATE_ENTRY_EVENT) detail.id=this._recordId
+      if(this._action==UPDATE_ENTRY_EVENT) detail.record.id=this._recordId
       let event=new CustomEvent(this._action,{detail})
       window.dispatchEvent(event)
     })

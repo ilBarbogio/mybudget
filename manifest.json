@@ -1,18 +1,19 @@
 {
-  "name": "ElefantinoDesign's\nMyBudget",
-  "short_name": "mybudget-elefantino",
-  "theme_color": "#00fa9f",
-  "background_color": "#00fa9f",
-  "display": "standalone",
-  "orientation":"portrait",
-  "scope": "./",
-  "start_url": "./",
-  "icons": [
-    {
-      "src": "assets/elefantino.svg",
-      "sizes": "any",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
-}
+    "name": "ElefantinoDesign's\nMyBudget",
+    "short_name": "mybudget-elefantino",
+    "theme_color": "#00fa9f",
+    "background_color": "#00fa9f",
+    "display": "standalone",
+    "orientation":"portrait",
+    "scope": "./",
+    "start_url": "./",
+    "icons": [
+      {
+        "src": "assets/elefantino.svg",
+        "sizes": "any",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "permissions":["download"]
+  }

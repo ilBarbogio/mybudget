@@ -1,30 +1,37 @@
 import { dayDateFormat } from "../../utils.js"
-import { categories, CURRENCY_SYMBOL, UPDATE_ENTRY_REQUEST_EVENT } from "../../variables.js"
+import { categories, CURRENCY_SYMBOL, DELETE_ENTRY_EVENT, EVENT_ACTIONS, UPDATE_ENTRY_EVENT } from "../../variables.js"
 
 const template=`
   <style>@import url("./scripts/components/budgetentry/budgetEntry.css")</style>
   <div class="container">
     <div class="date"></div>
     <div class="category"></div>
-    <div class="category-popover" popover>
-      <div></div>
-    </div>
+    <div class="category-popover" popover></div>
     <div class="value"></div>
     <div class="cause"></div>
     <div class="actions">
-      <my-icon class="button delete" size="2em" icon="trash"></my-icon>
-      <my-icon class="button modify" size="2em" icon="edit"></my-icon>
+      <button class="button delete">
+        <my-icon icon="trash"></my-icon>
+      </button>
+      <button class="button modify">
+        <my-icon icon="edit"></my-icon>
+      </button>
     </div>
-    <div class="delete-popover" popover="manual">
-      <div>
-        <div>Vuoi cancellare questa voce?</div>
-        <div class="actions">
-          <my-icon class="button confirm" size="2em" icon="check"></my-icon>
-          <my-icon class="button cancel" size="2em" icon="close"></my-icon>
-        </div>
+
+    <dialog class="delete-dialog">
+      <div>Vuoi cancellare questa voce?</div>
+      <div class="dialog-actions">
+        <button class="button confirm">
+          <my-icon icon="check" size="4em 2em"></my-icon>
+        </button>
+        <button class="button cancel">
+          <my-icon icon="close" size="4em 2em"></my-icon>
+        </button>
       </div>
-    </div>
+    </dialog>
+
   </div>
+</div>
 `
 export class BudgetEntry extends HTMLElement{
   // static observedAttributes=["id","value","cause"]
@@ -61,9 +68,9 @@ export class BudgetEntry extends HTMLElement{
   set category(cat){
     this._category=cat
     let label=categories.find(el=>el.id==cat)?.label??""
-    if(this.categoryPopover){
-      this.categoryPopover.querySelector("div").innerHTML=label
-    }
+    // if(this.categoryPopover){
+    //   this.categoryPopover.querySelector("div").innerHTML=label
+    // }
     this.renderData()
   }
   get category(){ return this._category}
@@ -86,9 +93,9 @@ export class BudgetEntry extends HTMLElement{
     this.deleteButton=this.container.querySelector(".button.delete")
     this.modifyButton=this.container.querySelector(".button.modify")
 
-    this.deletePopover=this.container.querySelector(".delete-popover")
-    this.confirmButtonPopover=this.container.querySelector(".delete-popover .button.confirm")
-    this.cancelButtonPopover=this.container.querySelector(".delete-popover .button.cancel")
+    this.deleteDialog=this.container.querySelector("dialog.delete-dialog")
+    this.confirmButtonDeleteDialog=this.deleteDialog.querySelector(".button.confirm")
+    this.cancelButtonDeleteDialog=this.deleteDialog.querySelector(".button.cancel")
 
     this.mounted=true
     this.setupListeners()
@@ -97,50 +104,46 @@ export class BudgetEntry extends HTMLElement{
 
   setupListeners(){
     this.deleteButton.addEventListener("click",(ev)=>{
-      this.deletePopover.showPopover()
+      this.deleteDialog.showModal()
     })
     this.modifyButton.addEventListener("click",(ev)=>{
       // const month=this._date.split("-")[1]
-      let event=new CustomEvent(UPDATE_ENTRY_REQUEST_EVENT,{
-        detail:{
+      let event=new CustomEvent(UPDATE_ENTRY_EVENT,{detail:{
+        action:EVENT_ACTIONS.request,
+        record:{
           id:this._id,
           value:this._value,
           cause:this._cause,
           category:this._category,
           date:this._date
         }
-      })
+      }})
       window.dispatchEvent(event)
     })
 
-    this.categoryDisplay.addEventListener("click",ev=>{
-      if(!this.categoryPopover.disabled){
+    // this.categoryDisplay.addEventListener("click",ev=>{
+    //   if(!this.categoryPopover.disabled){
         // let rect=this.categoryDisplay.getBoundingClientRect()
         // this.categoryPopover.style.top=`calc(${rect.y}px - .5em)`
         // this.categoryPopover.style.left=`calc(${rect.right}px + .5em)`
-        this.categoryPopover.showPopover()
-      }
-    })
+        // this.categoryPopover.showPopover()
+      // }
+    // })
 
     this.categoryPopover.addEventListener("click",ev=>{
       this.categoryPopover.hidePopover()
     })
-    this.confirmButtonPopover.addEventListener("click",ev=>{
+    this.confirmButtonDeleteDialog.addEventListener("click",ev=>{
       const month=this._date.split("-")[1]
-        let event=new CustomEvent("delete-entry",{
-          detail:{
-            id:this._id,
-            value:this._value,
-            cause:this._cause,
-            category:this._category,
-            month
-          }
-        })
+        let event=new CustomEvent(DELETE_ENTRY_EVENT,{detail:{
+          action:EVENT_ACTIONS.confirm,
+          id:this._id,
+        }})
         window.dispatchEvent(event)
-      this.deletePopover.hidePopover()
+      this.deleteDialog.close()
     })
-    this.cancelButtonPopover.addEventListener("click",ev=>{
-      this.deletePopover.hidePopover()
+    this.cancelButtonDeleteDialog.addEventListener("click",ev=>{
+      this.deleteDialog.close()
     })
   }
 
@@ -163,10 +166,10 @@ export class BudgetEntry extends HTMLElement{
         let label=cat?.label
         if(label){
           this.categoryPopover.setAttribute("disabled",true)
-          this.categoryPopover.querySelector("div").innerHTML=label
+          this.categoryPopover.innerHTML=label
         }else{
           this.categoryPopover.setAttribute("disabled",false)
-          this.categoryPopover.querySelector("div").innerHTML=""
+          this.categoryPopover.innerHTML=""
         }
       }else{
         this.categoryDisplay.innerHTML=""

@@ -1,4 +1,5 @@
-import { state } from "../../variables.js"
+import { state } from "../../data/state.js"
+import { MONTH_HIGHLIGHTED } from "../../variables.js"
 
 const template=
 `
@@ -7,8 +8,6 @@ const template=
   </div>
 `
 export class YearContainer extends HTMLElement{
-  // static observedAttributes=["year"]
-
   set data(data){
     if(this.mounted) this.buildMonths(data)
   }
@@ -26,35 +25,23 @@ export class YearContainer extends HTMLElement{
     this.observer=new IntersectionObserver(this.catchMonth,{
       threshold:.80
     })
-
+    
     this.mounted=true
   }
 
   setupListeners(){
   }
 
-  catchMonth(entries){
+  catchMonth=(entries)=>{
     let visibleMonth=entries.find(el=>el.isIntersecting)
-    if(visibleMonth){
-      //console.log(visibleMonth.target.getAttribute("month"))
+    if(visibleMonth && this.months){
+      let index=+visibleMonth.target.getAttribute("month")-1
+      for(let m of this.months) m.setAttribute("colorindex",index)
+
+      let event=new CustomEvent(MONTH_HIGHLIGHTED,{detail:index})
+      window.dispatchEvent(event)
     }
   }
-
-  // attributeChangedCallback(name, oldValue, newValue){
-  //   switch(name){
-  //     case "year":
-  //       this.year=newValue
-  //       if(this.mounted) this.updateMonths()
-  //       break
-  //     default: break
-  //   }
-  // }
-
-  // updateMonths(){
-  //   for(let m of this.container.children){
-  //     m.setAttribute("year",this.year)
-  //   }
-  // }
 
   buildMonths(data){
     let groupedData=new Map()
@@ -84,15 +71,17 @@ export class YearContainer extends HTMLElement{
     let endPadder=document.createElement("div")
     endPadder.classList.add("extremity-padder")
     this.container.append(endPadder)
-
     let currentMonthString=(new Date().getMonth()+1).toString().padStart(2,"0")
+
     let currentMonth=this.container.querySelector(`month-list[month="${currentMonthString}"]`)
-    setTimeout(()=>{currentMonth.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"})},100)
+    this.months=this.container.querySelectorAll("month-list")
+
+    queueMicrotask(()=>{currentMonth.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"})})
   }
 
   disconnectedCallback(){
     this.observer.disconnect()
     this.remove()
-    state.yearContainer=undefined
+    state.elements.yearContainer=undefined
   }
 }
