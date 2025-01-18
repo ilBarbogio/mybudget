@@ -1,8 +1,8 @@
 {
     "name": "ElefantinoDesign's\nMyBudget",
     "short_name": "mybudget-elefantino",
-    "theme_color": "#00fa9f",
-    "background_color": "#00fa9f",
+    "theme_color": "#000000",
+    "background_color": "#000000",
     "display": "standalone",
     "orientation":"portrait",
     "scope": "./",
