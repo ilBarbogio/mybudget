@@ -14,7 +14,7 @@ body{
   font-weight: 200;
   font-style: normal;
   font-variation-settings:"wdth" 100;
-  
+
   --toolbar-height:3em;
 
   --list-width:90vw;
@@ -30,10 +30,10 @@ body{
   height:100vh;
   overflow: hidden;
 
-  transition:background-color .5s;
+  /* transition:background-color .5s; */
   /* , background-image .5s; */
 
-  background-color: #4dc9a0;
+  /* background-color: #4dc9a0; */
   background-image: url("./assets/pattern_hemp.svg");
 }
 .toolbar{

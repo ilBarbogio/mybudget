@@ -76,19 +76,37 @@ export const pages={
 
 
 export const seasonColors=[
-  {backgroundImage:"./assets/pattern_hemp.svg",background:"#2a4b4daa",month:"#4bbec2aa",monthBorder:"#9effdd4d"},
-  {backgroundImage:"./assets/pattern_hemp.svg",background:"#2a4b4daa",month:"#4bbec2aa",monthBorder:"#9effdd4d"},
-  {backgroundImage:"./assets/pattern_hemp.svg",background:"#2a4b4daa",month:"#4bbec2aa",monthBorder:"#9effdd4d"},
+  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#2a4b4daa",month:"#4bbec2aa",monthBorder:"#9effdd4d"},
+  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#2a4b4daa",month:"#4bbec2aa",monthBorder:"#9effdd4d"},
+  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#2a4b4daa",month:"#4bbec2aa",monthBorder:"#9effdd4d"},
 
-  {backgroundImage:"./assets/pattern_flowers.svg",background:"#1cb941aa",month:"#4bc262aa",monthBorder:"#a0ff9e4d"},
-  {backgroundImage:"./assets/pattern_flowers.svg",background:"#1cb941aa",month:"#4bc262aa",monthBorder:"#a0ff9e4d"},
-  {backgroundImage:"./assets/pattern_flowers.svg",background:"#1cb941aa",month:"#4bc262aa",monthBorder:"#a0ff9e4d"},
+  // {backgroundImage:"./assets/pattern_flowers.svg",background:"#1cb941aa",month:"#4bc262aa",monthBorder:"#a0ff9e4d"},
+  // {backgroundImage:"./assets/pattern_flowers.svg",background:"#1cb941aa",month:"#4bc262aa",monthBorder:"#a0ff9e4d"},
+  // {backgroundImage:"./assets/pattern_flowers.svg",background:"#1cb941aa",month:"#4bc262aa",monthBorder:"#a0ff9e4d"},
 
-  {backgroundImage:"./assets/pattern_hemp.svg",background:"#ffa062aa",month:"#fffa62aa",monthBorder:"#fffa62aa"},
-  {backgroundImage:"./assets/pattern_hemp.svg",background:"#ffa062aa",month:"#fffa62aa",monthBorder:"#fffa62aa"},
-  {backgroundImage:"./assets/pattern_hemp.svg",background:"#ffa062aa",month:"#fffa62aa",monthBorder:"#fffa62aa"},
+  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#ffa062aa",month:"#fffa62aa",monthBorder:"#fffa62aa"},
+  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#ffa062aa",month:"#fffa62aa",monthBorder:"#fffa62aa"},
+  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#ffa062aa",month:"#fffa62aa",monthBorder:"#fffa62aa"},
 
-  {backgroundImage:"./assets/pattern_arrow.svg",background:"#764a10aa",month:"#c28e4baa",monthBorder:"#ffde9e4d"},
-  {backgroundImage:"./assets/pattern_arrow.svg",background:"#764a10aa",month:"#c28e4baa",monthBorder:"#ffde9e4d"},
-  {backgroundImage:"./assets/pattern_arrow.svg",background:"#764a10aa",month:"#c28e4baa",monthBorder:"#ffde9e4d"},
+  // {backgroundImage:"./assets/pattern_arrow.svg",background:"#764a10aa",month:"#c28e4baa",monthBorder:"#ffde9e4d"},
+  // {backgroundImage:"./assets/pattern_arrow.svg",background:"#764a10aa",month:"#c28e4baa",monthBorder:"#ffde9e4d"},
+  // {backgroundImage:"./assets/pattern_arrow.svg",background:"#764a10aa",month:"#c28e4baa",monthBorder:"#ffde9e4d"},
+
+  {background:"skyblue"},
+  {background:"skyblue"},
+
+  {background:"mediumspringgreen"},
+  {background:"mediumspringgreen"},
+  {background:"mediumspringgreen"},
+
+  {background:"#e53535"},
+  {background:"#e53535"},
+  {background:"#e53535"},
+
+  {background:"gold"},
+  {background:"gold"},
+  {background:"gold"},
+
+  {background:"skyblue"},
+  
 ]
