@@ -29,10 +29,10 @@ const appSetup=async()=>{
   setupStateListeners()
 
   if(state.currentFile){
-    // await buildCalendarPage()
+    await buildCalendarPage()
     // await buildFileManagerPage()
-    await state.loadFile()
-    await buildReportsPage()
+    // await state.loadFile()
+    // await buildReportsPage()
   }else{
     await buildFileManagerPage()
   }
