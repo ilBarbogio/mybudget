@@ -3,13 +3,15 @@ import { icons, categoryIcons } from "./iconVariables.js"
 const template=
 `
   <style>@import url("./scripts/components/myicon/myicon.css")</style>
-  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewbox="0 0 1000 1000" stroke="currentColor" fill="currentColor"></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" viewbox="0 0 1000 1000" stroke="currentColor" fill="currentColor"></svg>
 `
 export class MyIcon extends HTMLElement{
   static observedAttributes=["icon","color","size"]
 
   constructor(){
     super()
+
+    this.mounted=false
   }
 
   connectedCallback(){
@@ -23,11 +25,12 @@ export class MyIcon extends HTMLElement{
     this.applySize(this.getAttribute("size"))
     this.applyColor(this.getAttribute("color"))
     this.composeSvg(this.getAttribute("icon"))
-    this.svg.style.opacity=1
+    // this.svg.style.opacity=1
+    this.mounted=true
   }
 
   attributeChangedCallback(name, oldValue, newValue){
-    switch(name){
+    if(this.mounted) switch(name){
       case "size":
         this.applySize(newValue)
         break
@@ -68,5 +71,7 @@ export class MyIcon extends HTMLElement{
     else size=[size,size]
     this.style.width=size[0]
     this.style.height=size[1]
+    this.svg.style.width=size[0]
+    this.svg.style.height=size[1]
   }
 }

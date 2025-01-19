@@ -1,0 +1,13 @@
+:host{
+  display:block;
+  overflow: hidden;
+  border-radius: .5rem;
+  box-sizing: border-box;
+}
+canvas{
+  width:100%;
+  margin:0;
+  padding:0;
+
+  background-color: darkslategrey;
+}

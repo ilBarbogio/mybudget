@@ -7,7 +7,7 @@ const sanitizeNumber=(value)=>{
 const template=
 `
   <style>@import url("./scripts/components/monthlist/monthList.css")</style>
-  <div class="container">
+  <div class="container glass-card">
     <div class="header"></div>
     <div class="list"></div>
     
@@ -18,7 +18,6 @@ const template=
         <my-icon size="6em 2em" icon="add"></my-icon>
       </button>
     </div>
-    <div class="spacer"></div>
   </div>
 `
 export class MonthList extends HTMLElement{
@@ -116,13 +115,15 @@ export class MonthList extends HTMLElement{
     this._records=this._records.filter(el=>el.id!=id)
     const element=this.list.querySelector(`.entry[id=entry-${id}]`)
     if(element){
+      let lastRecord=this.list.length==1
       this.list.removeChild(element)
+      if(lastRecord) this.buildRows()
       this.updateTotals()
     }
   }
 
   addEntry(record){
-    console.log(record)
+    let firstRecord=this._records.length==0
     this._records.push(record)
     this.updateTotals()
     
@@ -137,6 +138,7 @@ export class MonthList extends HTMLElement{
     }
     if(i<this.list.children.length) this.list.children[i].insertAdjacentElement("beforebegin",entry)
     else this.list.append(entry)
+    if(firstRecord) this.buildRows()
     this.updateTotals()
   }
   updateEntry(record){

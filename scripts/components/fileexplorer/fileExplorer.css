@@ -12,20 +12,19 @@
   flex-direction: column;
   align-items: center;
 
-  backdrop-filter: blur(5px);
-  background: #4bbec2aa;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(158, 255, 221, 0.3);
-
-  padding:1em 0;
+  padding-bottom:1em;
   margin-bottom:2em;
 
   .header{
-    font-size: large;
-    font-weight: bold;
+    width:100%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 120%;
+    padding:.5em 0;
+    text-transform: capitalize;
 
     &.sub{
-      font-size: medium;
+      font-size: 80%;
     }
   }
 }
@@ -42,6 +41,10 @@
       }
     }
   }
+}
+
+.load-button{
+  margin-top: 1rem;
 }
 
 .file-results > div{

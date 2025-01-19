@@ -10,17 +10,10 @@ export const TOGGLE_SIDEBAR_EVENT="toggle-main-sidebar"
 export const TOGGLE_RECORD_INPUT_EVENT="toggle-entry-input"
 
 //action calls: request, act, confirm
-// export const ADD_ENTRY_REQUEST_EVENT="toggle-entry-input-add"
 export const ADD_ENTRY_EVENT="add-entry"
-// export const ADD_ENTRY_CONFIRM_EVENT="add-entry-confirm"
-
-// export const DELETE_ENTRY_REQUEST_EVENT="request-delete-entry"
 export const DELETE_ENTRY_EVENT="delete-entry"
-// export const DELETE_ENTRY_CONFIRM_EVENT="delete-entry-confirm"
-
-// export const UPDATE_ENTRY_REQUEST_EVENT="toggle-entry-input-update"
 export const UPDATE_ENTRY_EVENT="update-entry"
-// export const UPDATE_ENTRY_CONFIRM_EVENT="update-entry-confirm"
+
 
 export const EVENT_ACTIONS={
   request:"request",
@@ -63,8 +56,10 @@ export const categories=[
   {id:8, icon:"hobby", label:"hobbies"},
   {id:9, icon:"viaggi", label:"vacanze"},
   {id:10, icon:"regali", label:"regali"},
-  {id:11, icon:"salute", label:"cura persona"},
-  {id:12, icon:"cibo", label:"cibo fuori"},
+  {id:11, icon:"curapersona", label:"cura persona"},
+  {id:12, icon:"portafoglio", label:"portafoglio"},
+  {id:13, icon:"cibo", label:"cibo fuori"},
+  {id:14, icon:"entrate", label:"entrate"},
 ]
 
 export const pages={
@@ -76,22 +71,6 @@ export const pages={
 
 
 export const seasonColors=[
-  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#2a4b4daa",month:"#4bbec2aa",monthBorder:"#9effdd4d"},
-  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#2a4b4daa",month:"#4bbec2aa",monthBorder:"#9effdd4d"},
-  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#2a4b4daa",month:"#4bbec2aa",monthBorder:"#9effdd4d"},
-
-  // {backgroundImage:"./assets/pattern_flowers.svg",background:"#1cb941aa",month:"#4bc262aa",monthBorder:"#a0ff9e4d"},
-  // {backgroundImage:"./assets/pattern_flowers.svg",background:"#1cb941aa",month:"#4bc262aa",monthBorder:"#a0ff9e4d"},
-  // {backgroundImage:"./assets/pattern_flowers.svg",background:"#1cb941aa",month:"#4bc262aa",monthBorder:"#a0ff9e4d"},
-
-  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#ffa062aa",month:"#fffa62aa",monthBorder:"#fffa62aa"},
-  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#ffa062aa",month:"#fffa62aa",monthBorder:"#fffa62aa"},
-  // {backgroundImage:"./assets/pattern_hemp.svg",background:"#ffa062aa",month:"#fffa62aa",monthBorder:"#fffa62aa"},
-
-  // {backgroundImage:"./assets/pattern_arrow.svg",background:"#764a10aa",month:"#c28e4baa",monthBorder:"#ffde9e4d"},
-  // {backgroundImage:"./assets/pattern_arrow.svg",background:"#764a10aa",month:"#c28e4baa",monthBorder:"#ffde9e4d"},
-  // {backgroundImage:"./assets/pattern_arrow.svg",background:"#764a10aa",month:"#c28e4baa",monthBorder:"#ffde9e4d"},
-
   {background:"skyblue"},
   {background:"skyblue"},
 
@@ -108,5 +87,9 @@ export const seasonColors=[
   {background:"gold"},
 
   {background:"skyblue"},
-  
 ]
+
+export const pageColors={
+  [pages.filemanager]:"salmon",
+  [pages.reportspage]:"slateblue",
+}

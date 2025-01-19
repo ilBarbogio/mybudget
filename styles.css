@@ -3,8 +3,8 @@
   margin:0;
   touch-action: none;
 }
+
 :not(:defined){
-  visibility: hidden;
   opacity:0;
 }
 

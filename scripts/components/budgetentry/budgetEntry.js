@@ -34,7 +34,6 @@ const template=`
 </div>
 `
 export class BudgetEntry extends HTMLElement{
-  // static observedAttributes=["id","value","cause"]
   set data(data){
     this._id=data.id
     this._value=data.value
@@ -67,11 +66,8 @@ export class BudgetEntry extends HTMLElement{
 
   set category(cat){
     this._category=cat
-    let label=categories.find(el=>el.id==cat)?.label??""
-    // if(this.categoryPopover){
-    //   this.categoryPopover.querySelector("div").innerHTML=label
-    // }
-    this.renderData()
+    
+    // this.renderData()
   }
   get category(){ return this._category}
 
@@ -120,15 +116,13 @@ export class BudgetEntry extends HTMLElement{
       }})
       window.dispatchEvent(event)
     })
-
-    // this.categoryDisplay.addEventListener("click",ev=>{
-    //   if(!this.categoryPopover.disabled){
-        // let rect=this.categoryDisplay.getBoundingClientRect()
-        // this.categoryPopover.style.top=`calc(${rect.y}px - .5em)`
-        // this.categoryPopover.style.left=`calc(${rect.right}px + .5em)`
-        // this.categoryPopover.showPopover()
-      // }
-    // })
+    
+    this.shadow.addEventListener("click",(ev)=>{
+      if(window.innerWidth<400 && !ev.composedPath().find(el=>el.tagName?.toLowerCase()=="button")){
+        this.causeDisplay.classList.toggle("hidden")
+        this.actions.classList.toggle("visible")
+      }
+    })
 
     this.categoryPopover.addEventListener("click",ev=>{
       this.categoryPopover.hidePopover()

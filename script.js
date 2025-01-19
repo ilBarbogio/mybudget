@@ -1,5 +1,5 @@
 import { setupState, setupStateListeners, state } from "./scripts/data/state.js"
-import { LOADED_DATA_FROM_FILE, LS_KEY_CURRENT_FILE, MONTH_HIGHLIGHTED, seasonColors } from "./scripts/variables.js"
+import { LOADED_DATA_FROM_FILE, LS_KEY_CURRENT_FILE, MONTH_HIGHLIGHTED, NAVIGATE, pageColors, pages, seasonColors } from "./scripts/variables.js"
 import { buildCalendarPage, buildFileManagerPage, buildReportsPage } from "./scripts/transitions.js"
 
 const registerServiceWorker = async () => {
@@ -39,8 +39,10 @@ const appSetup=async()=>{
 
   //listen to visible month for background color changes
   window.addEventListener(MONTH_HIGHLIGHTED,(ev)=>{
-    document.getElementById("container").style.backgroundColor=seasonColors[ev.detail].background
-    // document.getElementById("container").style.backgroundImage=`url("${seasonColors[ev.detail].backgroundImage}")`
+    state.elements.container.style.backgroundColor=seasonColors[ev.detail].background
+  })
+  state.elements.toolbar.addEventListener(NAVIGATE,(ev)=>{
+    if(ev?.detail?.route) state.elements.container.style.backgroundColor=pageColors[ev.detail.route]
   })
 }
 

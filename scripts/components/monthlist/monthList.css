@@ -19,18 +19,8 @@
 .container{
   position:relative;
 
-  transition: background-color .5s, border-color .5s;
-
-  backdrop-filter: blur(5px);
-  background-color: #e2dbdbad;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  border-color: #c0c0c0;
-  border-width: 1px;
-  border-style: solid;
-
-  border-radius:0 0 .5em .5em;
   
-  margin-bottom: 6em;
+  margin-bottom: 6rem;
   
 }
 .header{
@@ -65,7 +55,7 @@
   width:100%;
   display:flex;
   justify-content:center;
-  margin:1em auto 2em auto;
+  margin:1rem auto 2rem auto;
 }
 
 .entry{
