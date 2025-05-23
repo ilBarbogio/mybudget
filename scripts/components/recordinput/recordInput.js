@@ -168,7 +168,7 @@ export class RecordInput extends HTMLElement{
     window.addEventListener(ADD_ENTRY_EVENT,(ev)=>{
 
       if(ev.detail.action==EVENT_ACTIONS.request){
-        this.dateInput.removeAttribute("disabled")
+        //this.dateInput.removeAttribute("disabled")
         this.action=ADD_ENTRY_EVENT
         this._recordId=undefined
         this.getInput("value").value=0
@@ -185,7 +185,7 @@ export class RecordInput extends HTMLElement{
     
     window.addEventListener(UPDATE_ENTRY_EVENT,(ev)=>{
       if(ev.detail.action==EVENT_ACTIONS.request){
-        this.dateInput.removeAttribute("disabled")
+        //this.dateInput.removeAttribute("disabled")
         this.action=UPDATE_ENTRY_EVENT
         this._recordId=ev.detail.record.id
         this.getInput("value").value=Math.abs(ev.detail.record.value)
