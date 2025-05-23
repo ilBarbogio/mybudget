@@ -84,6 +84,12 @@
   width:90%;
 }
 
+.input-group{
+  display:contents;
+  &.hidden{
+    visibility:hidden;
+  }
+}
 .date-input{
 }
 

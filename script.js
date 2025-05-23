@@ -1,6 +1,6 @@
 import { setupState, setupStateListeners, state } from "./scripts/data/state.js"
 import { LOADED_DATA_FROM_FILE, LS_KEY_CURRENT_FILE, MONTH_HIGHLIGHTED, NAVIGATE, pageColors, pages, seasonColors } from "./scripts/variables.js"
-import { buildCalendarPage, buildFileManagerPage, buildReportsPage } from "./scripts/transitions.js"
+import { buildCalendarPage, buildFileManagerPage, buildReportsPage, buildGoalsPage } from "./scripts/transitions.js"
 
 const registerServiceWorker = async () => {
   if("serviceWorker" in navigator){
@@ -33,6 +33,7 @@ const appSetup=async()=>{
     // await buildFileManagerPage()
     // await state.loadFile()
     // await buildReportsPage()
+    // await buildGoalsPage()
   }else{
     await buildFileManagerPage()
   }

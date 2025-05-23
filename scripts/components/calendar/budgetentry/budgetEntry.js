@@ -1,8 +1,8 @@
-import { dayDateFormat } from "../../utils.js"
-import { categories, CURRENCY_SYMBOL, DELETE_ENTRY_EVENT, EVENT_ACTIONS, UPDATE_ENTRY_EVENT } from "../../variables.js"
+import { dayDateFormat } from "utils"
+import { categories, CURRENCY_SYMBOL, DELETE_ENTRY_EVENT, EVENT_ACTIONS, UPDATE_ENTRY_EVENT } from "variables"
 
 const template=`
-  <style>@import url("./scripts/components/budgetentry/budgetEntry.css")</style>
+  <style>@import url("./scripts/components/calendar/budgetentry/budgetEntry.css")</style>
   <div class="container">
     <div class="date"></div>
     <div class="category"></div>

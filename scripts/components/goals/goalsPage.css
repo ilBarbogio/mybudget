@@ -1,0 +1,59 @@
+@import "../resets.css";
+
+.container{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  display:flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
+
+  & .extremity-padder{
+    width:var(--extremity-padding);
+    flex-shrink:0;
+  }
+}
+
+.glass-card{
+  position:relative;
+  width:var(--list-width);
+  flex-shrink:0;
+  margin:0 var(--list-margin);
+  /* padding-top: var(--toolbar-height); */
+  scroll-snap-align: center;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-bottom:1em;
+  margin-bottom:2em;
+
+  .header{
+    width:100%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 120%;
+    padding:.5em 0;
+    text-transform: capitalize;
+
+    &.sub{
+      font-size: 80%;
+    }
+  }
+}
+
+form .form-row{
+  display:flex;
+  align-items:center;
+  justify-content: flex-start;
+  gap:1em;
+}

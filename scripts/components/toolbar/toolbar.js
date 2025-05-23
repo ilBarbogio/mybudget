@@ -1,5 +1,5 @@
-import { state } from "../../data/state.js"
-import { NAVIGATE, pages } from "../../variables.js"
+import { state } from "data/state.js"
+import { NAVIGATE, pages } from "variables"
 
 const template=
 `
@@ -10,10 +10,13 @@ const template=
       <my-icon icon="calendar" size="3em" data-route="${pages.calendar}"></my-icon>
     </button>
     <button class="circle-button">
-      <my-icon icon="folder" size="3em" data-route="${pages.filemanager}"></my-icon>
+      <my-icon icon="star" size="3em" data-route="${pages.goalspage}"></my-icon>
     </button>
     <button class="circle-button">
       <my-icon icon="chart" size="3em" data-route="${pages.reportspage}"></my-icon>
+    </button>
+    <button class="circle-button">
+      <my-icon icon="folder" size="3em" data-route="${pages.filemanager}"></my-icon>
     </button>
   </div>
   <div class="sensible-area"></div>

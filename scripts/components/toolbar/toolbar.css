@@ -6,7 +6,7 @@
   --button-diameter:3em;
   --button-timing:.125s;
 
-  --n-buttons:3;
+  --n-buttons: 4;
   --top-hidden:calc(calc(-1.6 * var(--n-buttons)) * var(--button-diameter));
   --top-showing:0;
   --top-drag-delta:2em;
@@ -53,7 +53,7 @@
   clip-path: polygon(0 0, 0 100%, 50% calc(100% - 1.5em), 100% 100%, 100% 0);
 
   box-sizing: border-box;
-  height: calc(calc(var(--n-buttons) + 2.5) * var(--button-diameter));
+  height: calc(calc(var(--n-buttons) + 3) * var(--button-diameter));
   width:var(--button-diameter);
   padding:calc(.5 * var(--button-diameter)) 0;
 

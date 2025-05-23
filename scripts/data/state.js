@@ -3,6 +3,7 @@ import {
 	ADD_ENTRY_EVENT,
 	UPDATE_ENTRY_EVENT,
 	DELETE_ENTRY_EVENT,
+	ADD_PLANNED_ENTRY_EVENT,
 	EVENT_ACTIONS
 } from "../variables.js"
 import { listRecordFiles, readRecordFile, writeRecordFile } from "./opfsdata.js"
@@ -152,7 +153,6 @@ export const setupStateListeners=()=>{
   })
   window.addEventListener(UPDATE_ENTRY_EVENT,async(ev)=>{
 		if(ev.detail.action==EVENT_ACTIONS.confirm){
-			console.log(ev)
 			let response=await state.updateRecord(ev.detail.record)
 			if(response.result){
 				let event=new CustomEvent(UPDATE_ENTRY_EVENT,{detail:{action:EVENT_ACTIONS.finalize,record:response.record}})
@@ -171,6 +171,18 @@ export const setupStateListeners=()=>{
 			window.dispatchEvent(event)
 			}else{
 			console.error("Remove entry record")
+			}
+		}
+  })
+
+	window.addEventListener(ADD_PLANNED_ENTRY_EVENT,async(ev)=>{
+		if(ev.detail.action==EVENT_ACTIONS.confirm){
+			let response=await state.addRecord(ev.detail.record)
+			if(response.result){
+				let event=new CustomEvent(ADD_ENTRY_EVENT,{detail:{action:EVENT_ACTIONS.finalize,record:response.record}})
+				window.dispatchEvent(event)
+			}else{
+				console.error("Add entry error")
 			}
 		}
   })

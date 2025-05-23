@@ -1,12 +1,12 @@
-import { state } from "../../data/state.js"
-import { seasonColors, DELETE_ENTRY_EVENT, ADD_ENTRY_EVENT, UPDATE_ENTRY_EVENT, EVENT_ACTIONS } from "../../variables.js"
+import { state } from "data/state.js"
+import { seasonColors, DELETE_ENTRY_EVENT, ADD_ENTRY_EVENT, UPDATE_ENTRY_EVENT, EVENT_ACTIONS } from "variables"
 
 const sanitizeNumber=(value)=>{
   return Math.floor(value*100)/100
 }
 const template=
 `
-  <style>@import url("./scripts/components/monthlist/monthList.css")</style>
+  <style>@import url("./scripts/components/calendar/monthlist/monthList.css")</style>
   <div class="container glass-card">
     <div class="header"></div>
     <div class="list"></div>

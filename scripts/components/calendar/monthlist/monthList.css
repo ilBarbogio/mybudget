@@ -1,4 +1,4 @@
-@import "../resets.css";
+@import "../../resets.css";
 
 :host{
   position:relative;

@@ -1,4 +1,4 @@
-import { state } from "../../../data/state.js"
+import { state } from "data/state.js"
 const template=
 `
   <style>@import url("./scripts/components/reports/board/reportsboard.css")</style>
@@ -29,7 +29,11 @@ export class ReportsBoard extends HTMLElement{
     let min=Math.min(...records)
     let max=Math.max(...records)
     let ratio=(this.width*.5)/Math.max(Math.abs(min),Math.abs(max))*.9
-    this.step=5
+    
+    this.step=2
+    if(records.length<100) this.step=12
+    else if(records.length<200) this.step=6
+    else if(records.length<400) this.step=3
 
     this.canvas.height=(records.length +2)*this.step
     this.ctx.translate(this.width*.5,this.step)

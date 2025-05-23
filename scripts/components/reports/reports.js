@@ -1,6 +1,6 @@
 import {
   
-} from "../../variables.js"
+} from "variables"
 
 const template=
 `

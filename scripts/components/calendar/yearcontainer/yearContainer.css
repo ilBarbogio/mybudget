@@ -8,9 +8,9 @@
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   scroll-snap-stop: always;
-}
 
-.container .extremity-padder{
-  width:var(--extremity-padding);
-  flex-shrink:0;
+  & .extremity-padder{
+    width:var(--extremity-padding);
+    flex-shrink:0;
+  }
 }

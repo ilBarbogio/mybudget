@@ -1,0 +1,269 @@
+user,year,meta1,meta2
+El,2024,unused,unused
+id,date,cash,cause
+1,2024-01-21,-25.98,Corsi udemy
+2,2024-01-21,-8.81,Gita a grado
+3,2024-01-20,-20,Benzina Alberto
+4,2024-01-19,-59.9,Autocad 2022
+5,2024-01-18,-10,Piadina
+6,2024-01-14,-9.99,Lampada piantine
+7,2024-01-21,-7.07,Spesa
+8,2024-01-13,8,Mamma
+9,2024-01-08,-130.2,Visita neurologo
+10,2024-01-01,-265.92,Vacanza ferrara ravenna
+11,2024-01-06,50,Mamma
+12,2024-01-08,-58.59,Spesa
+13,2024-01-08,-6,Caffè
+14,2024-01-09,-7,Kebab
+15,2024-01-22,70,Arch cle
+16,2024-01-27,-2.6,Caffe
+17,2024-01-28,-10,Mostra valle
+18,2024-01-28,-7.6,Gelato
+19,2024-01-28,-18.86,Batteria
+20,2024-01-31,-36.53,Benzina
+21,2024-02-07,-25,Tessera coop
+22,2024-02-08,-11.6,Piadina
+23,2024-02-07,-725,Passaggio auto panda
+24,2024-02-07,-16,Marca bollo comune
+25,2024-02-09,150,Arch clemencig
+26,2024-02-09,45,Mamma
+27,2024-02-10,-10.4,Manga
+28,2024-02-10,-3.5,Cancelleria
+29,2024-02-10,-2.7,Flying tiger
+30,2024-02-10,-15.54,Spesa
+31,2024-02-10,-31,Spesa
+32,2024-02-15,100,Aech bortolotti
+33,2024-02-15,-44,Assicurazione panda
+34,2024-02-16,-7,Kebab
+35,2024-02-16,-27.5,S valentino 
+36,2024-02-20,-32,Marche bollo
+37,2024-02-12,-14,Pomata farmacia
+38,2024-02-24,-33.8,Rameb
+39,2024-02-25,-63.52,Comodini
+40,2024-02-25,-35.4,Ikea
+41,2024-02-25,24,Mamma
+42,2024-02-26,-2,F24
+43,2024-02-26,-251.3,Ordine architetti
+44,2024-02-26,-59,Far east film festival
+45,2024-02-29,-3.13,Spesa
+46,2024-03-02,-32.4,Spesa
+47,2024-03-02,-14.95,Tshirt alberto
+48,2024-03-02,-25,Pizza
+49,2024-03-02,-10.99,Magneti
+50,2024-03-04,60,Arch clemencig
+51,2024-03-06,-17,Libro
+54,2024-03-07,-32.73,Farmacia
+55,2024-03-08,-1,Portapillole
+56,2024-03-08,-2.6,Caffè
+57,2024-03-12,-2.6,Caffe
+58,2024-03-13,30,Arc clemencig
+59,2024-03-19,-42.59,Benzina
+60,2024-03-19,-25,Farmacia
+61,2024-03-23,-15.63,Spesa compleanno x lavoro
+62,2024-03-24,-7.6,Gelato gorizia
+63,2024-03-29,-10,Sciarpa alexandra
+64,2024-03-29,-50,Ricarica cel iliad
+65,2024-04-01,-3.5,Biscotti
+66,2024-04-01,-28,Treno venezia
+69,2024-04-01,-11,Grattini
+70,2024-04-01,-3.9,Caffe venezia
+71,2024-04-01,-12.9,Pasticcini venezia
+72,2024-04-01,-7,Pranzo venezia
+73,2024-04-01,-9.5,Biglietto vaporetto
+76,2024-04-04,-2.39,Cibo venezia
+77,2024-04-07,-13.85,Spesa
+78,2024-04-09,4680,Arc Mansutti
+79,2024-04-09,-488,Pagamento commercialista
+80,2024-04-14,-7.8,Frozen yogurt
+81,2024-04-15,-5.2,Autostrada paluzza
+82,2024-04-15,-2.8,Caffé paluzza
+83,2024-04-18,-46.66,Benzina
+84,2024-04-23,-37.45,Spesa
+85,2024-04-23,37.43,Mamma spesa
+86,2024-04-23,-20.64,Spesa
+87,2024-04-27,-9,Bubbke tea
+88,2024-04-28,-3,Colazione alberto
+89,2024-05-01,-15.3,Spesa
+90,2024-05-01,-19.5,Libro
+91,2024-05-02,-8.6,Piadina
+92,2024-05-02,-132.88,Bollo panda
+93,2024-05-04,-15,Aperitivo laura
+94,2024-05-06,-55,Benzina
+95,2024-05-08,-7,Caffe cantiere
+96,2024-05-09,-28.2,Old wild west
+97,2024-05-09,-28.27,Spesa x cena architetti
+98,2024-05-11,90,Arch clemencig
+99,2024-05-11,-12,Calzini
+100,2024-05-11,-52,Libri
+101,2024-05-11,-8.4,Spesa
+102,2024-05-11,-1.8,Piantina fragole
+103,2024-05-16,-6.3,Parcheggio lavoro
+104,2024-05-17,-44.7,Medicibe
+105,2024-05-17,-2.8,Parcheggio lavoro
+106,2024-05-18,-10.5,Poke mamma
+107,2024-05-21,-43,Benzina
+108,2024-05-21,40,Arch Zecchini
+109,2024-05-21,-4.5,Parcheggio lavoro
+110,2024-05-24,-2.6,Caffe
+111,2024-05-25,-25.3,Poke
+112,2024-05-27,-5.9,Fiori papà
+113,2024-05-30,-4.7,Truffa trasporti
+114,2024-05-31,-150,Panda cambio cinghia trasmissione
+115,2024-06-01,-31.6,Esami sangue
+116,2024-06-01,-9,Pasticcini
+117,2024-06-02,-39.99,Truffa
+118,2024-06-04,-1200,Spese casa
+119,2024-06-07,-33,Pizza
+120,2024-06-07,-3.3,Autistrada
+121,2024-06-09,-46,Pranzo
+122,2024-06-09,-2.3,Autostrada
+123,2024-06-09,-4.6,Biglietto corr spilimbergo
+124,2024-06-12,-5,Tessera unicredit
+125,2024-06-13,-615,Inarcassa I rata
+126,2024-06-13,39,Unicredit restituziine truffa
+127,2024-06-16,-5.25,Spesa
+128,2024-06-16,-273.5,Tasse f24
+129,2024-06-16,4162,Arch mansutti
+130,2024-06-19,-45.97,Benzina
+131,2024-06-25,-10,Arch mansutti raccomandata
+132,2024-06-25,2082,Fattura 3 studio 8
+133,2024-06-29,-56.67,Spesa
+134,2024-06-29,30,Mamma
+135,2024-06-30,-42.66,Libri
+136,2024-07-04,-122,Ginecologo
+137,2024-07-04,-5.2,Manga spyxfamily
+138,2024-07-09,-5,Pantaloni mamma
+139,2024-07-09,-15,Libro roma
+140,2024-07-15,-244,Commercialista 2024
+141,2024-07-07,-52.6,Italo roma
+142,2024-07-12,-7.5,Gelato
+143,2024-07-12,-5.7,Aperitivo
+144,2024-07-12,-25,Farmacia
+145,2024-07-13,-11.4,Ikea
+146,2024-07-13,-25.07,Brikonova
+147,2024-07-15,-2,Parcheggio
+148,2024-07-15,30,Arch Clemencig
+149,2024-07-12,-60,Tende mamma
+150,2024-07-16,80,Mamma
+151,2024-07-16,-2,Parcheggio
+152,2024-06-24,-32.3,Libri
+153,2024-07-17,-6.5,Cartina roma
+154,2024-07-21,-11.4,Cancelleria
+155,2024-07-21,-16.97,Spesa
+156,2024-07-21,20,Mamma
+157,2024-07-28,-47.56,Benzina
+158,2024-07-28,-10,Spesa
+159,2024-07-29,-2,Parcheggio lavoro
+160,2024-07-29,-4.3,Caffe
+161,2024-07-30,15,Arc clemencig
+162,2024-07-30,-2,Parcheggio
+163,2024-08-02,-10,Metro
+164,2024-08-02,-32.12,Spesa
+165,2024-08-02,30,Mamma
+166,2024-08-05,-5.95,Parcheggio lavoro
+167,2024-08-06,-4.5,Caffe ganis
+168,2024-08-06,50,Orioles via Roma
+169,2024-08-10,-15,Lignano
+170,2024-08-13,-18.98,Decathlon
+171,2024-08-17,-26.5,Pizza lignano
+172,2024-08-17,-495,Assicuraziine auto
+173,2024-08-19,-70,Assciurazione auto
+174,2024-08-23,-19.9,Libro
+175,2024-09-03,60,Arch clemencig
+176,2024-09-03,-2,Parcheggio
+177,2024-08-27,421.5,Vacanze Roma
+178,2024-09-08,-3.11,Corsi domestika
+179,2024-09-09,-50,Farmacia verochol
+180,2024-09-09,-45.62,Benzina
+181,2024-09-09,-19.95,Felpa ovs
+182,2024-09-11,-2.8,Caffé paluzza
+183,2024-09-11,-6.5,Pranzo pizza
+184,2024-09-11,50,Mamma
+185,2024-09-11,-48.38,Test covid, sabbietta gatto amazon
+186,2024-09-12,-2,Parcheggio
+187,2024-09-13,-7,Mandorle friuli ciok
+188,2024-09-13,-20.8,Pranzo con mamma e alba
+189,2024-09-13,20,Mamma
+190,2024-09-14,-24.3,Friuli ciok
+191,2024-09-15,-2.9,Topini silvestro
+192,2024-09-15,-15.23,Spesa tosano
+193,2024-09-17,-627,2 rata inarcassa
+194,2024-09-20,-42,Tokyo
+195,2024-09-20,100,Arch Clemencig
+196,2024-09-20,-5.4,Treno pordenone
+197,2024-09-22,-14,Treno venezia
+198,2024-09-22,-56,Biglietti biennale ve
+199,2024-09-27,-2.5,Regalino alberto
+200,2024-09-28,-35.4,Spesa tosano
+201,2024-09-28,7,Mamma
+202,2024-09-29,-6.95,Cuscino casa alberto
+203,2024-10-01,-75,Dentista pulizia
+204,2024-10-05,-4.6,Biglietto spilimbergo
+205,2024-10-06,-14,Treno ve-ud
+206,2024-10-06,-1.7,Acqua e wc venezia
+207,2024-10-06,-2,Parcheggio
+208,2024-10-06,-2,Parcheggio
+209,2024-10-12,-20,Alberto
+210,2024-10-12,-5.5,Cibo silvestro
+211,2024-10-16,-563.12,Rc professionale assigeco
+212,2024-10-17,-14.25,Libro mamma
+213,2024-10-18,-2,Parcheggio
+214,2024-10-19,-40.8,Erboristeria cividale
+215,2024-10-19,40,Mamma erboristeria
+216,2024-10-19,-3.05,Pane
+217,2024-10-20,-15,Pizza
+218,2024-10-22,10,Ar h Clemencig
+219,2024-10-26,115.2,Cedole banca
+220,2024-10-27,20,Mamma
+221,2024-10-27,-39.68,Creme
+222,2024-10-27,-1.1,Foglio alberto
+223,2024-10-27,-4.35,Cibo silvestro
+224,2024-10-28,-2,Parcheggio
+225,2024-10-28,-48.93,Benzina
+226,2024-10-28,-703.13,Inarcassa
+227,2024-10-28,4682,Arch Mansutti
+228,2024-11-02,-30,Scarpe
+229,2024-11-02,30,Arch Clemencig
+230,2024-11-02,50,Arch Zecchini
+231,2024-11-08,15,Arch Clemencig
+232,2024-11-08,-20,Regalo Alberto
+233,2024-11-09,-9.5,Corriera
+234,2024-11-12,-85,Ecografia mammaria
+235,2024-11-16,-11.4,Gelato
+236,2024-11-19,-328.5,2 rata tasse
+237,2024-11-23,-5.9,Brikonova
+238,2024-11-23,5,Mamma
+239,2024-11-23,180,Mamma
+240,2024-11-23,-179.85,Cell mamma
+241,2024-11-24,-12.03,Spesa
+242,2024-11-24,5,Alberto
+243,2024-11-24,6,Mamma
+244,2024-11-29,-6,F24
+245,2024-11-30,-12,Libro
+246,2024-11-30,-12.95,Spesa
+247,2024-11-30,-9.9,Bubble tea
+248,2024-12-07,-38.5,Spesa
+249,2024-12-07,-50,Abbonamento feff25
+250,2024-12-09,-2,Parvheggii
+251,2024-12-13,-2.4,Caffè
+252,2024-12-13,-10,Piadina
+253,2024-12-13,90,Arch Bortolotti
+254,2024-12-13,-18.06,Benzina
+255,2024-12-14,-11,Calendario e grattini
+256,2024-12-14,-24,Libro
+257,2024-12-15,-3,Cioccolata
+258,2024-12-16,-150,Farmacia
+259,2024-12-16,30,Mamma
+260,2024-12-18,72.8,Arch Perraro
+261,2024-12-19,-26.2,Ciocvolatini mamma
+262,2024-12-21,-50.95,Regalo mamma
+263,2024-12-21,-14.05,Spesa
+264,2024-12-23,-40,Regalo Alberto
+265,2024-12-26,-6.5,Caffe
+266,2024-12-29,-16,Biglietti scala contarini-boboli
+267,2024-12-29,-33,Biglietto guggenheim
+268,2024-12-29,-1.04,Bibita venezia
+269,2024-12-30,-6,Grartini mamma
+270,2024-12-30,-6.9,Spesa
+271,2024-12-30,5202,Arch Mansutti
+272,2024-12-31,-50,Iliad

@@ -1,9 +1,9 @@
-import { state } from "../../data/state.js"
-import { MONTH_HIGHLIGHTED } from "../../variables.js"
+import { state } from "data/state.js"
+import { MONTH_HIGHLIGHTED } from "variables"
 
 const template=
 `
-  <style>@import url("./scripts/components/yearcontainer/yearContainer.css")</style>
+  <style>@import url("./scripts/components/calendar/yearcontainer/yearContainer.css")</style>
   <div class="container">
   </div>
 `
@@ -71,12 +71,14 @@ export class YearContainer extends HTMLElement{
     let endPadder=document.createElement("div")
     endPadder.classList.add("extremity-padder")
     this.container.append(endPadder)
-    let currentMonthString=(new Date().getMonth()+1).toString().padStart(2,"0")
 
+    let currentMonthString=(new Date().getMonth()+1).toString().padStart(2,"0")
     let currentMonth=this.container.querySelector(`month-list[month="${currentMonthString}"]`)
     this.months=this.container.querySelectorAll("month-list")
 
-    queueMicrotask(()=>{currentMonth.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"})})
+    setTimeout(()=>{
+      currentMonth.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"})
+    },50)
   }
 
   disconnectedCallback(){

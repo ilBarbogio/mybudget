@@ -13,6 +13,9 @@ function updateView(ev){
     case pages.filemanager:
       buildDestination=buildFileManagerPage
       break
+    case pages.goalspage:
+      buildDestination=buildGoalsPage
+      break
     case pages.reportspage:
       buildDestination=buildReportsPage
       break
@@ -45,6 +48,15 @@ export const buildFileManagerPage=async ()=>{
   state.elements.container.append(fileExplorer)
 
   state.currentPage=pages.filemanager
+}
+
+export const buildGoalsPage=async ()=>{
+  state.elements.container.innerHTML=""
+
+  let goalsPage=document.createElement("goals-page")
+  state.elements.container.append(goalsPage)
+
+  state.currentPage=pages.goalspage
 }
 
 export const buildReportsPage=()=>{

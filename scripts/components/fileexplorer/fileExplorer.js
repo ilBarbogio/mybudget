@@ -1,17 +1,20 @@
-import { downloadDataFile, parseDataFile } from "../../data/files.js"
-import { state } from "../../data/state.js"
-import { createRecordFile, listRecordFiles, readRecordFile, removeRecordFile } from "../../data/opfsdata.js"
-import { buildCalendarPage } from "../../transitions.js"
+import { downloadDataFile, parseDataFile } from "data/files.js"
+import { state } from "data/state.js"
+import { createRecordFile, listRecordFiles, readRecordFile, removeRecordFile } from "data/opfsdata.js"
+import { buildCalendarPage } from "transitions"
 import {
   LS_KEY_CURRENT_FILE,
   LOADED_DATA_FROM_FILE,
   UPLOADED_FILE_DATA_LEGACY
-} from "../../variables.js"
+} from "variables"
 
 const template=
 `
   <style>@import url("./scripts/components/fileexplorer/fileExplorer.css")</style>
   <div class="container">
+
+    <div class="extremity-padder"></div>
+
     <div class="glass-card file-list">
       <div class="header">File salvati</div>
       <div class="file-results"></div>
@@ -19,6 +22,7 @@ const template=
         <my-icon icon="refresh" color="black" size="4em 2em"></my-icon>
       </button>
     </div>
+
     <div class="glass-card file-creation">
       <div class="header">Gestione file</div>
       <div class="header sub">Crea file</div>
@@ -40,6 +44,9 @@ const template=
         </button>
       </form>
     </div>
+
+
+    <div class="extremity-padder"></div>
     
     <dialog class="download-dialog">
       <div>Scegli un formato di file</div>

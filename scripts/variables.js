@@ -1,8 +1,4 @@
 export const APP_VERSION="01.00.00"
-export const MAIN_DATABASE_NAME="myb_db_main"
-export const MAIN_DATABASE_RECORD_STORE_NAME="datasets"
-export const DATABASE_NAME="myb_db"
-export const DATABASE_RECORD_STORE_NAME="records"
 
 //EVENTS
 //toggle calls
@@ -13,6 +9,10 @@ export const TOGGLE_RECORD_INPUT_EVENT="toggle-entry-input"
 export const ADD_ENTRY_EVENT="add-entry"
 export const DELETE_ENTRY_EVENT="delete-entry"
 export const UPDATE_ENTRY_EVENT="update-entry"
+
+export const ADD_PLANNED_ENTRY_EVENT="add-planned-entry"
+export const DELETE_PLANNED_ENTRY_EVENT="delete-planned-entry"
+export const UPDATE_PLANNED_ENTRY_EVENT="update-planned-entry"
 
 
 export const EVENT_ACTIONS={
@@ -38,6 +38,8 @@ export const MONTH_HIGHLIGHTED="month-into-view"
 //KEYs
 //local storage
 export const LS_KEY_CURRENT_FILE="currentFile"
+
+export const LS_KEY_PLANNED_ENTRIES="planneEntries"
 
 
 export const CURRENCY_SYMBOL="€"
@@ -65,6 +67,7 @@ export const categories=[
 export const pages={
   calendar:"calendar",
   filemanager:"filemanager",
+  goalspage:"goalspage",
   reportspage:"reportspage",
   categorymanager:"categorymanager",
 }
@@ -92,4 +95,5 @@ export const seasonColors=[
 export const pageColors={
   [pages.filemanager]:"salmon",
   [pages.reportspage]:"slateblue",
+  [pages.goalspage]:"lightgreen",
 }
