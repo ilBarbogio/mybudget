@@ -62,6 +62,10 @@ export const categories=[
   {id:12, icon:"portafoglio", label:"portafoglio"},
   {id:13, icon:"cibo", label:"cibo fuori"},
   {id:14, icon:"entrate", label:"entrate"},
+  {id:15, icon:"libri", label:"libri"},
+  {id:16, icon:"vestiti", label:"vestiti"},
+  {id:17, icon:"tecnologia", label:"tecnologia"},
+  {id:18, icon:"maialino", label:"maialino"},
 ]
 
 export const pages={
