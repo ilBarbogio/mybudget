@@ -17,7 +17,7 @@ const template=
     
         <div class="first-row">
           <my-icon class="sign button" icon="subtract" color="red"></my-icon>
-          <input class="number-input" type="number" name="value" min=0 step=.01/>
+          <input class="number-input" type="number" name="value" min="0" step="0.01"/>
           <div class="category-display">
             <div></div>
           </div>
@@ -27,7 +27,8 @@ const template=
           <input class="date-input" type="date" name="date"/>
         </div>
         <div class="input-group planned hidden">
-          <div>
+          <input class="date-input" type="date" name="planned-date"/>
+          <!-- <div>
             <label for="start-date">Start:</label>
             <input class="date-input" type="date" name="start-date"/>
           <div>
@@ -38,10 +39,10 @@ const template=
           <div>
             <label for="frequency">daily:</label>
             <select name="frequency">
-              <option value=0>daily</option>
-              <option value=1>weekly</option>
-              <option value=2>monthly</option>
-              <option value=3>year</option>
+              <option value=0>One shot</option>
+              <option value=1>daily</option>
+              <option value=2>weekly</option>
+              <option value=3>monthly</option>
             </select>
 
             <label for="week-day">Week day:</label>
@@ -70,7 +71,7 @@ const template=
               <option value=10>nov</option>
               <option value=11>dec</option>
             </select>
-          </div>
+          </div> -->
         </div>
 
         <textarea class="cause-input" name="cause"></textarea>
@@ -206,7 +207,8 @@ export class RecordInput extends HTMLElement{
         this.getInput("value").value=0
         this.sign=1
         this.category=undefined
-        this.getInput("date").value=""
+        let currentDate=new Date()
+        this.getInput("planned-date").value=`${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2,"0")}-${currentDate.getDate().toString().padStart(2,"0")}`
         this.getInput("cause").value=""
         this.container.classList.toggle("open")
       }else if(ev.detail.action==EVENT_ACTIONS.confirm){
@@ -287,7 +289,18 @@ export class RecordInput extends HTMLElement{
         window.dispatchEvent(event)
       }else if(this.action==UPDATE_PLANNED_ENTRY_EVENT || this.action==ADD_PLANNED_ENTRY_EVENT){
         console.log("PLANNED ENTRY")
-        console.log(ev)
+        let detail={
+          action:EVENT_ACTIONS.confirm,
+          record:{
+            value:this._sign*Math.abs(data.value??0),
+            date:data["planned-date"],
+            cause:data.cause,
+            category:this._category
+          }
+        }
+        // if(this.action==UPDATE_PLANNED_ENTRY_EVENT) detail.record.id=this._recordId
+        let event=new CustomEvent(this.action,{detail})
+        window.dispatchEvent(event)
       }
     })
     this.closeButton.addEventListener("click",(ev)=>{

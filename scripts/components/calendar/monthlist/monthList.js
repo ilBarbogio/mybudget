@@ -54,10 +54,10 @@ export class MonthList extends HTMLElement{
       if(ev.detail.action==EVENT_ACTIONS.confirm) this.deleteEntry(ev.detail.id)
     })
     window.addEventListener(ADD_ENTRY_EVENT,(ev)=>{
-      if(ev.detail.action==EVENT_ACTIONS.confirm && ev.detail.record.date.split("-")[1]==this.getAttribute("month")) this.addEntry(ev.detail.record)
+      if(ev.detail.action==EVENT_ACTIONS.finalize && ev.detail.record.date.split("-")[1]==this.getAttribute("month")) this.addEntry(ev.detail.record)
     })
     window.addEventListener(UPDATE_ENTRY_EVENT,(ev)=>{
-      if(ev.detail.action==EVENT_ACTIONS.confirm && ev.detail.record.date.split("-")[1]==this.getAttribute("month")) this.updateEntry(ev.detail.record)
+      if(ev.detail.action==EVENT_ACTIONS.finalize && ev.detail.record.date.split("-")[1]==this.getAttribute("month")) this.updateEntry(ev.detail.record)
     })
     this.addButton.addEventListener("click",(ev)=>{
       const event=new CustomEvent(ADD_ENTRY_EVENT,{detail:{
@@ -105,8 +105,8 @@ export class MonthList extends HTMLElement{
       }
     }else{
       let entry=document.createElement("div")
-      entry.classList.add("entry")
-      entry.innerHTML="Nessuna voce"
+      entry.classList.add("entry","empty")
+      entry.innerHTML="Nessuna entrata o uscita registrate"
       this.list.append(entry)
     }
   }

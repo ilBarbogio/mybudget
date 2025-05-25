@@ -19,7 +19,7 @@ const template=
       <div class="planned-list"></div>
       
       <button class="new-entry">
-        <my-icon icon="add" color="black" size="2em"></my-icon>
+        <my-icon icon="add" color="black" size="6em 2em"></my-icon>
       </button>
       
     </div>
@@ -28,8 +28,8 @@ const template=
       <div class="header">Obiettivi</div>
       <div class="goals-list"></div>
       <form class="goals-form">
-        <button class="load-button" type="sumbit">
-          <my-icon icon="add" color="black" size="4em 2em"></my-icon>
+        <button disabled class="load-button" type="button">
+          <my-icon icon="add" color="black" size="6em 2em"></my-icon>
         </button>
       </form>
     </div>
@@ -85,7 +85,7 @@ export class GoalsPage extends HTMLElement{
   setupListeners(){
 
     window.addEventListener(ADD_PLANNED_ENTRY_EVENT,(ev)=>{
-      if(ev.detail.action==EVENT_ACTIONS.confirm) this.addPlannedEntry(ev.detail.record)
+      if(ev.detail.action==EVENT_ACTIONS.finalize) this.addPlannedEntry(ev.detail.record)
     })
 
     this.newPlannedEntryButton.addEventListener("click",()=>{
@@ -105,6 +105,7 @@ export class GoalsPage extends HTMLElement{
   }
 
   addPlannedEntry(record){
+    //react to new planne entry here, for visualization purposes
     console.log(record)
   }
 }

@@ -6,6 +6,7 @@ import {
 	ADD_PLANNED_ENTRY_EVENT,
 	EVENT_ACTIONS
 } from "../variables.js"
+import { addPlannedEntry } from "./localdata.js"
 import { listRecordFiles, readRecordFile, writeRecordFile } from "./opfsdata.js"
 
 /**
@@ -112,6 +113,32 @@ class State{
 			return {...result,id}
 		}else return {result:false}
 	}
+
+
+	addPlannedEntry=async (record)=>{
+		console.log(record)
+		// record.id=this._maxId+1
+		// this._data.records.push(record)
+		// this.updateMaxId()
+		// let result=await writeRecordFile(state._data.user,state._data.year,state._data.records,state._data.goals)
+		// return {...result,record}
+	}
+	updatePlannedEntry=async (record)=>{
+		// let index=state._data.records.findIndex(el=>el.id==record.id)
+		// if(index>=0){
+		// 	state._data.records[index]={...record}
+		// 	let result=await writeRecordFile(state._data.user,state._data.year,state._data.records,state._data.goals)
+		// 	return {...result,record}
+		// }else return {result:false}
+	}
+	removePlannedEntry=async (id)=>{
+		// let index=state._data.records.findIndex(el=>el.id==id)
+		// if(index>=0){
+		// 	state._data.records.splice(index,1)
+		// 	let result=await writeRecordFile(state._data.user,state._data.year,state._data.records,state._data.goals)
+		// 	return {...result,id}
+		// }else return {result:false}
+	}
 }
 
 export const state=new State()
@@ -177,9 +204,10 @@ export const setupStateListeners=()=>{
 
 	window.addEventListener(ADD_PLANNED_ENTRY_EVENT,async(ev)=>{
 		if(ev.detail.action==EVENT_ACTIONS.confirm){
-			let response=await state.addRecord(ev.detail.record)
+			console.log("STATE add planned")
+			let response=addPlannedEntry(ev.detail.record)
 			if(response.result){
-				let event=new CustomEvent(ADD_ENTRY_EVENT,{detail:{action:EVENT_ACTIONS.finalize,record:response.record}})
+				let event=new CustomEvent(ADD_PLANNED_ENTRY_EVENT,{detail:{action:EVENT_ACTIONS.finalize,record:response.record}})
 				window.dispatchEvent(event)
 			}else{
 				console.error("Add entry error")

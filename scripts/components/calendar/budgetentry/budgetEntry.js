@@ -66,8 +66,7 @@ export class BudgetEntry extends HTMLElement{
 
   set category(cat){
     this._category=cat
-    
-    // this.renderData()
+    this.renderData()
   }
   get category(){ return this._category}
 

@@ -60,8 +60,10 @@
 
 .entry{
   width:100%;
-  /* height:1em;
-  line-height: 1em; */
+  &.empty{
+    display: flex;
+    justify-content: center;
+  }
 }
 .entry:nth-child(2n){
   background-color: #96969621;

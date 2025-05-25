@@ -47,6 +47,7 @@
   display:flex;
   gap:.5em;
   width:80%;
+  margin:0 auto;
   align-items: center;
   justify-content: space-between;
 }
@@ -61,6 +62,7 @@
 .number-input{
   width:90%;
   height:2em;
+  margin: .5em auto;
 }
 
 .category-display{
@@ -81,13 +83,21 @@
 }
 
 .cause-input{
+  display:flex;
   width:90%;
+  margin: .5em auto;
 }
 
 .input-group{
-  display:contents;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  margin: .5em auto;
   &.hidden{
     visibility:hidden;
+    height:0;
+    overflow: hidden;
   }
 }
 .date-input{
