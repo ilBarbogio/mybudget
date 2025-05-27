@@ -4,6 +4,7 @@ import { createRecordFile, listRecordFiles, readRecordFile, removeRecordFile } f
 import { buildCalendarPage } from "transitions"
 import {
   ADD_PLANNED_ENTRY_EVENT,
+  DELETE_PLANNED_ENTRY_EVENT,
   EVENT_ACTIONS
 } from "variables"
 
@@ -22,6 +23,7 @@ const template=
         <my-icon icon="add" color="black" size="6em 2em"></my-icon>
       </button>
       
+      <generated-list></generated-list>
     </div>
 
     <div class="glass-card goals">
@@ -76,16 +78,20 @@ export class GoalsPage extends HTMLElement{
 
     this.plannedForm=this.shadow.querySelector("form.planned-form")
     this.plannedList=this.shadow.querySelector("div.planned-list")
+    this.generatedList=this.shadow.querySelector("div.generated-list")
     
     this.newPlannedEntryButton=this.shadow.querySelector("button.new-entry")
 
     this.setupListeners()
+    this.buildPlannedRows()
   }
 
   setupListeners(){
-
     window.addEventListener(ADD_PLANNED_ENTRY_EVENT,(ev)=>{
       if(ev.detail.action==EVENT_ACTIONS.finalize) this.addPlannedEntry(ev.detail.record)
+    })
+    window.addEventListener(DELETE_PLANNED_ENTRY_EVENT,(ev)=>{
+      if(ev.detail.action==EVENT_ACTIONS.finalize) this.removePlannedEntry(ev.detail.record)
     })
 
     this.newPlannedEntryButton.addEventListener("click",()=>{
@@ -104,8 +110,26 @@ export class GoalsPage extends HTMLElement{
     // })
   }
 
+  buildPlannedRows(){
+    this.plannedList.innerHTML=""
+    if(state.planned.length==0){
+      let entry=document.createElement("div")
+      entry.classList.add("entry","empty")
+      entry.innerHTML="Nessuna pianificazione registrata"
+      this.plannedList.append(entry)
+    }
+    else for(let p of state.planned){
+      let entry=document.createElement("planned-entry")
+      entry.classList.add("entry")
+      entry.data=p
+      this.plannedList.append(entry)
+    }
+  }
+  
   addPlannedEntry(record){
-    //react to new planne entry here, for visualization purposes
-    console.log(record)
+    this.buildPlannedRows()
+  }
+  removePlannedEntry(record){
+    this.buildPlannedRows()
   }
 }

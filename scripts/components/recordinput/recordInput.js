@@ -27,51 +27,43 @@ const template=
           <input class="date-input" type="date" name="date"/>
         </div>
         <div class="input-group planned hidden">
-          <input class="date-input" type="date" name="planned-date"/>
-          <!-- <div>
-            <label for="start-date">Start:</label>
-            <input class="date-input" type="date" name="start-date"/>
+          <div>
+            <label for="planned-frequency">daily:</label>
+            <select name="planned-frequency">
+              <option value="0">One shot</option>
+              <option value="1">daily</option>
+              <option value="2">weekly</option>
+              <option value="3">monthly</option>
+            </select>
+          </div>
+          <div>
+            <label for="planned-start-date">Start:</label>
+            <input disabled class="date-input" type="date" name="planned-start-date"/>
           <div>
           </div>
-            <label for="end-date">End:</label>
-            <input class="date-input" type="date" name="end-date"/>
+            <label for="planned-end-date">End:</label>
+            <input disabled class="date-input" type="date" name="planned-end-date"/>
           </div>
           <div>
-            <label for="frequency">daily:</label>
-            <select name="frequency">
-              <option value=0>One shot</option>
-              <option value=1>daily</option>
-              <option value=2>weekly</option>
-              <option value=3>monthly</option>
+            <label for="planned-weekday">Week day:</label>
+            <select disabled name="planned-weekday">
+              <option value="1">lun</option>
+              <option value="2">mar</option>
+              <option value="3">mer</option>
+              <option value="4">gio</option>
+              <option value="5">ven</option>
+              <option value="6">sab</option>
+              <option value="0">dom</option>
             </select>
 
-            <label for="week-day">Week day:</label>
-            <select name="week-day">
-              <option value=0>lun</option>
-              <option value=1>mar</option>
-              <option value=2>mer</option>
-              <option value=3>gio</option>
-              <option value=4>ven</option>
-              <option value=5>sab</option>
-              <option value=6>dom</option>
+            <label for="planned-monthday">Day:</label>
+            <select disabled name="planned-monthday">
+              ${(new Array(31)).fill(0).map((el,i)=>{
+                console.log(el,i)
+                return "<option value="+i+">"+(i+1)+"</option>"
+              })}
             </select>
-
-            <label for="month">Month:</label>
-            <select name="month">
-              <option value=0>gen</option>
-              <option value=1>feb</option>
-              <option value=2>mar</option>
-              <option value=3>apr</option>
-              <option value=4>mag</option>
-              <option value=5>giu</option>
-              <option value=6>lug</option>
-              <option value=7>ago</option>
-              <option value=8>set</option>
-              <option value=9>ott</option>
-              <option value=10>nov</option>
-              <option value=11>dec</option>
-            </select>
-          </div> -->
+          </div>
         </div>
 
         <textarea class="cause-input" name="cause"></textarea>
@@ -80,7 +72,7 @@ const template=
           <button class="save button" type="submit">
             <my-icon icon="check"></my-icon>
           </button>
-          <button class="close button">
+          <button class="close button" type="button">
             <my-icon icon="close"></my-icon>
           </button>
         </div>
@@ -207,8 +199,8 @@ export class RecordInput extends HTMLElement{
         this.getInput("value").value=0
         this.sign=1
         this.category=undefined
-        let currentDate=new Date()
-        this.getInput("planned-date").value=`${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2,"0")}-${currentDate.getDate().toString().padStart(2,"0")}`
+        this.getInput("planned-frequency").value="0"
+        this.setPlannedFrequency("0")
         this.getInput("cause").value=""
         this.container.classList.toggle("open")
       }else if(ev.detail.action==EVENT_ACTIONS.confirm){
@@ -217,16 +209,20 @@ export class RecordInput extends HTMLElement{
     })
     
     window.addEventListener(UPDATE_PLANNED_ENTRY_EVENT,(ev)=>{
+      // const 
+
       if(ev.detail.action==EVENT_ACTIONS.request){
         this.action=UPDATE_PLANNED_ENTRY_EVENT
         this._recordId=ev.detail.record.id
         this.getInput("value").value=Math.abs(ev.detail.record.value)
         this.sign=ev.detail.record.value>=0?1:-1
-        this.getInput("date").value=ev.detail.record.date
+        // this.getInput("date").value=ev.detail.record.date
         this.getInput("cause").value=ev.detail.record.cause
         this.category=ev.detail.record?.category
         this.container.classList.toggle("open")
+        this.setupPlannedListeners()
       }else if(ev.detail.action==EVENT_ACTIONS.confirm){
+        this.removePlannedListeners()
         this.close()
       }
     })
@@ -243,9 +239,6 @@ export class RecordInput extends HTMLElement{
       this.toggleSign()
     })
 
-    // this.valueInput.addEventListener("input",(ev)=>{
-    //   this._value=Math.abs(ev.target.value)
-    // })
     this.getInput("value").addEventListener("focus",(ev)=>{
       if(ev.target.value==0) ev.target.value=""
     })
@@ -289,11 +282,19 @@ export class RecordInput extends HTMLElement{
         window.dispatchEvent(event)
       }else if(this.action==UPDATE_PLANNED_ENTRY_EVENT || this.action==ADD_PLANNED_ENTRY_EVENT){
         console.log("PLANNED ENTRY")
+        let reference
+        if(data["planned-frequency"]==2) reference=data["planned-weekday"]
+        else if(data["planned-frequency"]==3) reference=data["planned-monthday"]
         let detail={
           action:EVENT_ACTIONS.confirm,
-          record:{
+          plannedRecord:{
             value:this._sign*Math.abs(data.value??0),
-            date:data["planned-date"],
+            frequency:data["planned-frequency"],
+            dates:[
+              data["planned-start-date"],
+              data["planned-end-date"]
+            ],
+            reference,
             cause:data.cause,
             category:this._category
           }
@@ -306,8 +307,54 @@ export class RecordInput extends HTMLElement{
     this.closeButton.addEventListener("click",(ev)=>{
       this.close()
     })
+
+    this.setupPlannedListeners()
   }
 
+  setPlannedFrequency(ev){
+    let currentDate=new Date()
+    switch(typeof ev == "object"?ev.target.value:ev){
+      case "0"://one shot
+        this.getInput("planned-start-date").disabled=false
+        this.getInput("planned-start-date").value=`${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2,"0")}-${currentDate.getDate().toString().padStart(2,"0")}`
+        this.getInput("planned-end-date").disabled=true
+        this.getInput("planned-end-date").value=""
+        this.getInput("planned-weekday").disabled=true
+        this.getInput("planned-monthday").disabled=true
+        break
+      case "1"://daily
+        this.getInput("planned-start-date").disabled=false
+        this.getInput("date").value=`${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2,"0")}-${currentDate.getDate().toString().padStart(2,"0")}`
+        this.getInput("planned-end-date").disabled=false
+        this.getInput("planned-end-date").value=""
+        this.getInput("planned-weekday").disabled=true
+        this.getInput("planned-monthday").disabled=true
+        break
+      case "2"://weekly
+        this.getInput("planned-start-date").disabled=false
+        this.getInput("date").value=`${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2,"0")}-${currentDate.getDate().toString().padStart(2,"0")}`
+        this.getInput("planned-end-date").disabled=false
+        this.getInput("planned-end-date").value=""
+        this.getInput("planned-weekday").disabled=false
+        this.getInput("planned-weekday").value=currentDate.getDay()
+        this.getInput("planned-monthday").disabled=true
+        break
+      case "3"://monthly
+        this.getInput("planned-start-date").disabled=false
+        this.getInput("date").value=`${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2,"0")}-${currentDate.getDate().toString().padStart(2,"0")}`
+        this.getInput("planned-end-date").disabled=false
+        this.getInput("planned-end-date").value=""
+        this.getInput("planned-weekday").disabled=true
+        this.getInput("planned-monthday").disabled=false
+        this.getInput("planned-monthday").value=currentDate.getMonth()
+        break
+    }
+  }
+  setupPlannedListeners(){
+    const setFreq=(ev)=>{this.setPlannedFrequency(ev)}
+    this.getInput("planned-frequency").addEventListener("input",setFreq)
+  }
+  
   getInput(name){
     return this.inputContainer.querySelector(`*[name=${name}]`)
   }

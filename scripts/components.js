@@ -15,6 +15,7 @@ import { ReportsBoard } from "./components/reports/board/reportsboard.js"
 
 import { GoalsPage } from "./components/goals/goalsPage.js"
 import { PlannedEntry } from "./components/goals/plannedentry/plannedEntry.js"
+import { GeneratedList } from "./components/goals/generatedlist/generatedList.js"
 
 
 customElements.define("main-toolbar",MainToolbar)
@@ -33,3 +34,4 @@ customElements.define("reports-board",ReportsBoard)
 
 customElements.define("goals-page",GoalsPage)
 customElements.define("planned-entry",PlannedEntry)
+customElements.define("generated-list",GeneratedList)

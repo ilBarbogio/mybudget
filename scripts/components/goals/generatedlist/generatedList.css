@@ -4,16 +4,14 @@
 }
 
 .container{
-  --planned-entry-height:1.5rem;
+  --generated-entry-height:2rem;
   position:relative;
-  display:grid;
-  grid-template-rows:var(--planned-entry-height) var(--planned-entry-height); 
-  grid-template-columns: 6rem 1.5rem 6rem 1fr max-content;
-  padding: 0 .5em;
+  display:flex;
+  flex-direction: column;
   gap: .5em;
   align-items: center;
 
-  line-height: var(--planned-entry-height);
+  line-height: var(--generated-entry-height);
 
   .dates{
     grid-column:1;

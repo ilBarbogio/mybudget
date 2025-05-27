@@ -23,5 +23,5 @@ export const sanitizeNumber=(value)=>{
 export const dayDateFormat=(date)=>{
   // let split=date.split("-")
   let d=new Date(date)
-  return {day:d.toLocaleDateString("it",{weekday:"short"}), date:d.getDate()}
+  return {day:d.toLocaleDateString("it",{weekday:"short"}), month:d.toLocaleDateString("it",{month:"short"}), date:d.getDate()}
 }

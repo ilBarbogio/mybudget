@@ -76,7 +76,9 @@ export const readRecordFile=async(filename)=>{
       fsCurrentFile=await fsRootDir.getFileHandle(filename)
       let blob=await fsCurrentFile.getFile()
       let data=await blob.text()
+      console.log(data)
       data=JSON.parse(data)
+      console.log(data)
       return {result:true, data}
     }catch(err){
       return {result:false, message:err}
@@ -84,7 +86,7 @@ export const readRecordFile=async(filename)=>{
   }else return {result:false, message:"No file specified"}
 }
 
-export const writeRecordFile=async(user,year,records,goals)=>{
+export const writeRecordFile=async(user,year,records,planned,goals)=>{
   try{
     if(!fsRootDir) fsRootDir=await navigator.storage.getDirectory()
     fsCurrentFile=await fsRootDir.getFileHandle(formatRecordFilename(user,year))
@@ -93,6 +95,7 @@ export const writeRecordFile=async(user,year,records,goals)=>{
       user,
       year,
       records,
+      planned,
       goals
     })
     const writeStream=await fsCurrentFile.createWritable()

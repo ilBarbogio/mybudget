@@ -57,3 +57,27 @@ form .form-row{
   justify-content: flex-start;
   gap:1em;
 }
+
+.planned-list{
+  width:100%;
+  .entry{
+    width:100%;
+    &.empty{
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .entry:nth-child(2n){
+    background-color: #96969621;
+  }
+}
+
+.generated-list{
+  width:100%;
+  .entry{
+    width:100%;
+  }
+  .entry:nth-child(2n){
+    background-color: #96969621;
+  }
+}
