@@ -186,9 +186,7 @@ export class PlannedEntry extends HTMLElement{
           break
         case "3":
           this.frequencyDisplay.innerHTML="Mensile"
-          date=new Date()
-          date.setMonth(this._reference)
-          this.referenceDisplay.innerHTML=`${dayDateFormat(date).month}`
+          this.referenceDisplay.innerHTML=`${this._reference}`
           break
         default:
           this.frequencyDisplay.innerHTML=""

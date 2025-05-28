@@ -25,3 +25,7 @@ export const dayDateFormat=(date)=>{
   let d=new Date(date)
   return {day:d.toLocaleDateString("it",{weekday:"short"}), month:d.toLocaleDateString("it",{month:"short"}), date:d.getDate()}
 }
+
+export const dateToYYYYMMDD=(date=new Date())=>{
+  return `${date.getFullYear()}-${(date.getMonth()+1).toString().padStart(2,"0")}-${date.getDate().toString().padStart(2,"0")}`
+}

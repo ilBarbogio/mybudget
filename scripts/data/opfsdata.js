@@ -76,9 +76,7 @@ export const readRecordFile=async(filename)=>{
       fsCurrentFile=await fsRootDir.getFileHandle(filename)
       let blob=await fsCurrentFile.getFile()
       let data=await blob.text()
-      console.log(data)
       data=JSON.parse(data)
-      console.log(data)
       return {result:true, data}
     }catch(err){
       return {result:false, message:err}

@@ -3,6 +3,8 @@ import {
   UPDATE_ENTRY_EVENT,
   ADD_PLANNED_ENTRY_EVENT,
   UPDATE_PLANNED_ENTRY_EVENT,
+  ADD_PROPOSED_ENTRY_EVENT,
+  BROADCAST_PLANNED_UID,
   categories,
   EVENT_ACTIONS
 } from "variables"
@@ -58,10 +60,7 @@ const template=
 
             <label for="planned-monthday">Day:</label>
             <select disabled name="planned-monthday">
-              ${(new Array(31)).fill(0).map((el,i)=>{
-                console.log(el,i)
-                return "<option value="+i+">"+(i+1)+"</option>"
-              })}
+              ${(new Array(31)).fill(0).map((el,i)=>"<option value="+i+">"+(i+1)+"</option>")}
             </select>
           </div>
         </div>
@@ -151,7 +150,7 @@ export class RecordInput extends HTMLElement{
     this._sign=1
     this._category=undefined
 
-    this.mounted=true
+    this._uid=undefined
     this.setSignButton()
 
     this.setupListeners()
@@ -159,9 +158,7 @@ export class RecordInput extends HTMLElement{
 
   setupListeners(){
     window.addEventListener(ADD_ENTRY_EVENT,(ev)=>{
-
       if(ev.detail.action==EVENT_ACTIONS.request){
-        //this.dateInput.removeAttribute("disabled")
         this.action=ADD_ENTRY_EVENT
         this._recordId=undefined
         this.getInput("value").value=0
@@ -227,6 +224,22 @@ export class RecordInput extends HTMLElement{
       }
     })
 
+    window.addEventListener(ADD_PROPOSED_ENTRY_EVENT,(ev)=>{
+      if(ev.detail.action==EVENT_ACTIONS.request){
+        this._uid=ev.detail.uid
+        this.action=ADD_ENTRY_EVENT
+        this._recordId=undefined
+        this.getInput("cause").value=ev.detail.record.cause
+        this.category=ev.detail.record.category
+        this.getInput("date").value=ev.detail.record.date
+        this.sign=ev.detail.record.value>=0?1:-1
+        this.getInput("value").value=Math.abs(ev.detail.record.value)
+        this.container.classList.toggle("open")
+      }else if(ev.detail.action==EVENT_ACTIONS.confirm){
+        this.close()
+      }
+    })
+
     this.container.addEventListener("click",(ev)=>{
       this.close()
     })
@@ -267,7 +280,11 @@ export class RecordInput extends HTMLElement{
       ev.preventDefault()
       let data=Object.fromEntries(new FormData(ev.target))
       if(this.action==UPDATE_ENTRY_EVENT || this.action==ADD_ENTRY_EVENT){
-        console.log("ENTRY")
+        if(this._uid!==undefined){
+          let uidEvent=new CustomEvent(BROADCAST_PLANNED_UID,{detail:this._uid})
+          window.dispatchEvent(uidEvent)
+        }
+        this._uid=undefined
         let detail={
           action:EVENT_ACTIONS.confirm,
           record:{
@@ -305,6 +322,7 @@ export class RecordInput extends HTMLElement{
       }
     })
     this.closeButton.addEventListener("click",(ev)=>{
+      this._uid=undefined
       this.close()
     })
 

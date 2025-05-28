@@ -23,6 +23,7 @@ const template=
         <my-icon icon="add" color="black" size="6em 2em"></my-icon>
       </button>
       
+      <div class="header">Proposti</div>
       <generated-list></generated-list>
     </div>
 

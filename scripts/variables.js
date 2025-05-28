@@ -13,6 +13,8 @@ export const UPDATE_ENTRY_EVENT="update-entry"
 export const ADD_PLANNED_ENTRY_EVENT="add-planned-entry"
 export const DELETE_PLANNED_ENTRY_EVENT="delete-planned-entry"
 export const UPDATE_PLANNED_ENTRY_EVENT="update-planned-entry"
+export const ADD_PROPOSED_ENTRY_EVENT="add-proposed-entry"
+export const BROADCAST_PLANNED_UID="broadcast-planned-uid"
 
 
 export const EVENT_ACTIONS={
@@ -40,6 +42,7 @@ export const MONTH_HIGHLIGHTED="month-into-view"
 export const LS_KEY_CURRENT_FILE="currentFile"
 
 export const LS_KEY_PLANNED_ENTRIES="planneEntries"
+export const LS_KEY_ACCEPTED_ENTRIES="acceptedProposedEntries"
 
 
 export const CURRENCY_SYMBOL="€"
@@ -101,3 +104,5 @@ export const pageColors={
   [pages.reportspage]:"slateblue",
   [pages.goalspage]:"lightgreen",
 }
+
+export const plannedLookaround=3

@@ -96,7 +96,6 @@ class State{
 			let res=await readRecordFile(filename??this._currentFile)
 			if(!res.result) throw("Problem loading the current file")
 			else{
-		console.log(res)
 				state.data={...defaultData,...res.data}
 				this.updateMaxIds()
 				return{result:true}

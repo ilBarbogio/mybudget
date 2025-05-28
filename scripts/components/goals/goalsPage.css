@@ -72,12 +72,18 @@ form .form-row{
   }
 }
 
-.generated-list{
-  width:100%;
-  .entry{
+.planned{
+  .generated-list{
     width:100%;
+    .entry{
+      width:100%;
+    }
+    .entry:nth-child(2n){
+      background-color: #96969621;
+    }
   }
-  .entry:nth-child(2n){
-    background-color: #96969621;
+  
+  .new-entry{
+    margin:.5em auto;
   }
 }
