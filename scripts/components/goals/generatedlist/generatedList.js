@@ -27,6 +27,7 @@ export class GeneratedList extends HTMLElement{
     window.addEventListener(BROADCAST_PLANNED_UID,(ev)=>{
       console.log(ev)
       this.addAcceptedPlanned(ev.detail)
+      this.generateRows()
     })
     
     this.generateRows()
