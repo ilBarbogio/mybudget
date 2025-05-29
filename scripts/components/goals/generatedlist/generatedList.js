@@ -2,7 +2,7 @@ import { state } from "data/state.js"
 import { dayDateFormat, dateToYYYYMMDD } from "utils"
 import {
   plannedLookaround, categories,
-  ADD_PROPOSED_ENTRY_EVENT, BROADCAST_PLANNED_UID, EVENT_ACTIONS,
+  ADD_PLANNED_ENTRY_EVENT, DELETE_PLANNED_ENTRY_EVENT, ADD_PROPOSED_ENTRY_EVENT, BROADCAST_PLANNED_UID, EVENT_ACTIONS,
   CURRENCY_SYMBOL, LS_KEY_ACCEPTED_ENTRIES
 } from "variables"
 
@@ -25,9 +25,14 @@ export class GeneratedList extends HTMLElement{
     this.container=this.shadow.querySelector(".container")
 
     window.addEventListener(BROADCAST_PLANNED_UID,(ev)=>{
-      console.log(ev)
       this.addAcceptedPlanned(ev.detail)
       this.generateRows()
+    })
+    window.addEventListener(ADD_PLANNED_ENTRY_EVENT,(ev)=>{
+      if(ev.detail.action==EVENT_ACTIONS.finalize) this.generateRows()
+    })
+    window.addEventListener(DELETE_PLANNED_ENTRY_EVENT,(ev)=>{
+      if(ev.detail.action==EVENT_ACTIONS.finalize) this.generateRows()
     })
     
     this.generateRows()
