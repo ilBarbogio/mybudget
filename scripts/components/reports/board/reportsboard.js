@@ -25,17 +25,54 @@ export class ReportsBoard extends HTMLElement{
   }
 
   setupData(){
-    let records=state.records.map(el=>parseFloat(el.value))
-    let min=Math.min(...records)
-    let max=Math.max(...records)
+    let records=state.records.sort((a,b)=>a.date>=b.date?1:-1)
+    let recordMap=Map.groupBy(records,el=>el.date.split("-")[1])
+    
+    for(let k of recordMap.keys()){
+      let entries=Map.groupBy(recordMap.get(k),el=>el.date)
+      for(let kk of entries.keys()){
+        let subentries=entries.get(kk)
+        let dailyValue=subentries.reduce((acc,curr)=>acc+curr.value,0)
+        entries.set(kk, dailyValue)
+      }
+      recordMap.set(k,entries)
+    }
+    
+    let fullMap=new Map()
+    let cumulated=0
+    for(let [i,m] of (new Array(12)).entries()){
+      let k=(i+1).toString().padStart(2,"0")
+      if(recordMap.has(k)){
+        let dayValues=recordMap.get(k).values().toArray()
+        let dayProgr=(new Array(dayValues.length)).fill(0)
+        dayValues.reduce((acc,curr,i)=>{
+          dayProgr[i]=acc+curr
+          return acc+curr
+        },cumulated)
+        cumulated=dayProgr[dayProgr.length-1]
+        fullMap.set(i,{days:dayValues,progressives:dayProgr})
+      }else fullMap.set(i,{days:[],progressives:[]})
+    }
+
+    
+
+    records=records.map(el=>parseFloat(el.value))
+    let progressive=(new Array(records.length)).fill(0)
+    records.reduce((acc,curr,i)=>{
+      progressive[i]=acc+curr
+      return acc+curr
+    },0)
+    
+    let min=Math.min(...progressive)
+    let max=Math.max(...progressive)
     let ratio=(this.width*.5)/Math.max(Math.abs(min),Math.abs(max))*.9
     
-    this.step=2
-    if(records.length<100) this.step=12
-    else if(records.length<200) this.step=6
-    else if(records.length<400) this.step=3
+    this.step=12
+    // if(records.length<100) this.step=12
+    // else if(records.length<200) this.step=6
+    // else if(records.length<400) this.step=3
 
-    this.canvas.height=(records.length +2)*this.step
+    this.canvas.height=300//(records.length +2)*this.step
     this.ctx.translate(this.width*.5,this.step)
 
     this.ctx.strokeStyle="gray"
@@ -45,26 +82,61 @@ export class ReportsBoard extends HTMLElement{
     this.ctx.lineTo(0,records.length*this.step)
     this.ctx.stroke()
 
+    let step=12
+    let cursor=0
+    for(let m of fullMap.keys()){
+      this.ctx.strokeStyle="gray"
+      this.ctx.setLineDash([4,4])
+      this.ctx.beginPath()
+      this.ctx.moveTo(-this.width*.5,cursor*step)
+      this.ctx.lineTo(this.width*.5,cursor*step)
+      this.ctx.stroke()
+
+      this.ctx.font="10px Arial"
+      this.ctx.fillStyle="white"
+      this.ctx.fillText(`${(m+1).toString().padStart(2,"0")} / ${state.year}`,-this.width*.5+5,cursor*step-5)
+
+      cursor++
+
+
+      let {days,}=fullMap.get(m)
+      if(days.length>0){
+        for(let [i,d] of days.entries()){
+          this.ctx.strokeStyle=d<0?"red":"green"
+          this.ctx.setLineDash([])
+          this.ctx.beginPath()
+          this.ctx.moveTo(0,cursor*step)
+          this.ctx.lineTo(d*ratio,cursor*step)
+          this.ctx.stroke()
+
+          cursor++
+        }
+      }
+    }
+
+    cursor=0
+    let lastProgressive=0
     this.ctx.strokeStyle="white"
     this.ctx.setLineDash([])
-    this.ctx.beginPath()
-    this.ctx.moveTo(0,0)
-    for(let [i,r] of records.entries()){
-      this.ctx.lineTo(r*ratio,i*this.step)
-    }
-    this.ctx.stroke()
+    for(let m of fullMap.keys()){
+      this.ctx.beginPath()
+      this.ctx.moveTo(lastProgressive*ratio,cursor*step)
+      cursor++
+      this.ctx.lineTo(lastProgressive*ratio,cursor*step)
+      this.ctx.stroke()
 
-    // this.ctx.strokeStyle="red"
-    // this.ctx.setLineDash([])
-    // this.ctx.beginPath()
-    // this.ctx.moveTo(0,0)
-    // let total=0
-    // for(let [i,r] of records.entries()){
-    //   total+=r
-    //   console.log(total)
-    //   this.ctx.lineTo(total*ratio,i*this.step)
-    // }
-    // this.ctx.stroke()
+      let {days,progressives}=fullMap.get(m)
+      if(progressives.length>0){
+        this.ctx.beginPath()
+        this.ctx.moveTo(lastProgressive*ratio,cursor*step)
+        for(let p of progressives){
+          this.ctx.lineTo(p*ratio,cursor*step)
+          cursor++
+        }
+        this.ctx.lineTo(lastProgressive*ratio,cursor*step)
+        this.ctx.stroke()
+      }
+    }
   }
 
   setupListeners(){

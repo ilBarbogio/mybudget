@@ -230,7 +230,6 @@ export const setupStateListeners=()=>{
 		}
   })
   window.addEventListener(DELETE_ENTRY_EVENT,async(ev)=>{
-		console.log(ev,ev.detail.action==EVENT_ACTIONS.confirm)
 		if(ev.detail.action==EVENT_ACTIONS.confirm){
 			let response=await state.removeRecord(ev.detail.id)
 			if(response.result){
@@ -245,7 +244,6 @@ export const setupStateListeners=()=>{
 	window.addEventListener(ADD_PLANNED_ENTRY_EVENT,async(ev)=>{
 		if(ev.detail.action==EVENT_ACTIONS.confirm){
 			console.log("STATE add planned")
-			console.log(ev.detail)
 			let response=await state.addPlannedEntry(ev.detail.plannedRecord)
 			if(response.result){
 				let event=new CustomEvent(ADD_PLANNED_ENTRY_EVENT,{detail:{action:EVENT_ACTIONS.finalize,record:response.record}})
@@ -256,7 +254,6 @@ export const setupStateListeners=()=>{
 		}
   })
   window.addEventListener(DELETE_PLANNED_ENTRY_EVENT,async(ev)=>{
-		console.log(ev,ev.detail.action==EVENT_ACTIONS.confirm)
 		if(ev.detail.action==EVENT_ACTIONS.confirm){
 			let response=await state.removePlannedEntry(ev.detail.id)
 			if(response.result){

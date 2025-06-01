@@ -55,7 +55,6 @@ export class GeneratedList extends HTMLElement{
   generateRows(){
     this.container.innerHTML=""
     for(let p of state.planned){
-      console.log(p)
       let start=p.dates[0]??`${state.year}-01-01`
       let end=p.dates[1]??`${state.year}-12-31`
       
