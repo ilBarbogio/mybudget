@@ -72,7 +72,7 @@ export class ReportsBoard extends HTMLElement{
     // else if(records.length<200) this.step=6
     // else if(records.length<400) this.step=3
 
-    this.canvas.height=300//(records.length +2)*this.step
+    this.canvas.height=(records.length +2)*this.step
     this.ctx.translate(this.width*.5,this.step)
 
     this.ctx.strokeStyle="gray"
@@ -102,7 +102,7 @@ export class ReportsBoard extends HTMLElement{
       let {days,}=fullMap.get(m)
       if(days.length>0){
         for(let [i,d] of days.entries()){
-          this.ctx.strokeStyle=d<0?"red":"green"
+          this.ctx.strokeStyle=d<0?"red":"lime"
           this.ctx.setLineDash([])
           this.ctx.beginPath()
           this.ctx.moveTo(0,cursor*step)

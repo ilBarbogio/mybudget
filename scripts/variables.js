@@ -69,6 +69,7 @@ export const categories=[
   {id:16, icon:"vestiti", label:"vestiti"},
   {id:17, icon:"tecnologia", label:"tecnologia"},
   {id:18, icon:"maialino", label:"maialino"},
+  {id:19, icon:"museo", label:"museo"},
 ]
 
 export const pages={

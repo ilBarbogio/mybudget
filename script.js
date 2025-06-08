@@ -51,3 +51,28 @@ appSetup()
 
 
 
+function generateFakeData(){
+  let id=1
+  let records=[]
+  let randomDays=[1,3,5,6,7,9,12,14,15,16,18,19,20,21,25,26,28]
+  let randomWords=["ciao bischero","una cosa a caso","motivazione random","causa random perchè serve","speca ics","spesa ipsilon","guadagno random","trovati per terra"]
+
+  let month=1
+  while(month<8){
+    let i=Math.floor(Math.random()*5)
+    while(i<randomDays.length){
+      records.push({
+        id,
+        value:Math.floor(Math.random()*200-100),
+        cause:randomWords[Math.floor(Math.random()*randomWords.length)],
+        date:`2025-${month.toString().padStart(2,"0")}-${randomDays[i].toString().padStart(2,"0")}`
+      })
+      id++
+      if(Math.random()>=.02) i+=Math.floor(Math.random()*3)
+    }
+    month++
+  }
+
+  console.log(JSON.stringify(records))
+}
+// generateFakeData()

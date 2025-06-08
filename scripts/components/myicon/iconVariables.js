@@ -239,12 +239,12 @@ export const categoryIcons={
 <path d="M808.76,224.9v168.22c0,10.33,16.38,18.7,36.58,18.7c20.2,0,36.58-8.37,36.58-18.7V170.09
 	C881.91,122.7,808.76,179.09,808.76,224.9z"/>`,
 
-libri:`<polyline style="stroke:currentColor;stroke-width:60;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="243,171.84 549,373.08 549,891 252,666 243,171.84 		"/>
+	libri:`<polyline style="stroke:currentColor;stroke-width:60;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="243,171.84 549,373.08 549,891 252,666 243,171.84 		"/>
 <polyline style="fill:none;stroke:currentColor;stroke-width:60;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="765,747 765,249 342,112.08 243,171.84 		"/>
 <polyline style="fill:none;stroke:currentColor;stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="693,801 693,306 333,144 		"/>
 <polyline style="fill:none;stroke:currentColor;stroke-width:30;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;" points="630,864 630,342 306,162 		"/>`,
 
-vestiti:`
+	vestiti:`
 <path d="M504,846H288c0,0,10.32-404.69,0-413s-99-10-99-10s-75.36-176.8-63-198s225-72,225-72c1.28,6.84,57.71,54.45,72,61
 	c18.79,8.61,86,18,86,18s68.29-10.74,85-18c17.29-7.5,75.25-56.9,72-61c0,0,213,55.4,225,72s-63,198-63,198s-89.4,2.4-99,10
 	s0,413,0,413H513H504z M495,307.09c-43.5-34.75-114.08-84.76-145.33-71.44c-46.83,19.97,19.87,95.3,19.87,95.3
@@ -252,7 +252,7 @@ vestiti:`
 	c36.72,27.11,88.87,57.18,123.52,37.14c55.09-31.86-1.82-76.87-1.82-76.87s66.71-75.33,19.87-95.3
 	c-31.25-13.32-103.55,39.5-147.05,74.25C513.51,305.44,505.2,304.47,495,307.09z"/>`,
 
-tecnologia:`
+	tecnologia:`
 <path style="stroke:currentColor;stroke-width:20;stroke-linejoin:round;stroke-miterlimit:10;" d="M564.39,183.37c70.7,55.69,116.13,114.38,116.13,114.38s-10.26,129.39,39.23,168.38
 	s-17.33,123.82-17.33,123.82s-66.83,84.84-116.32,45.86c-49.49-38.98-172.88,1.31-172.88,1.31s-67.7-30.41-138.4-86.1
 	C428.88,585,608.88,333,564.39,183.37z"/>
@@ -260,4 +260,18 @@ tecnologia:`
 <line style="fill:none;stroke:currentColor;stroke-width:60;stroke-linecap:round;stroke-miterlimit:10;" x1="172.8" y1="287.21" x2="356.62" y2="432"/>
 <line style="fill:none;stroke:currentColor;stroke-width:60;stroke-linecap:round;stroke-miterlimit:10;" x1="284.17" y1="145.81" x2="468" y2="290.6"/>
 <path style="fill:none;stroke:currentColor;stroke-width:60;stroke-linecap:round;stroke-miterlimit:10;" d="M651.12,540c144,72,201.81,163.21,180,225c-54,153-342-27-459,108"/>`,
+	museo:`
+<path style="fill:none;stroke:currentColor;stroke-width:40;stroke-linejoin:round;stroke-miterlimit:10;" d="M294.48,100.66c-59.08,0-141.3,89.85-95.65,133.33l57.97,78.26c-2.9,130.43,54.2,211.67,60.87,281.14
+	L274.2,703.53c-21.46,60.62-16.82,108.27-17.39,168.11c90.34,48.82,208.68,40.58,278.25-14.49
+	c63.76,46.67,166.42,46.45,246.36,2.9c1.88-53.53,8.37-77.73-5.78-133.18c-14.33-56.18-87.11-150.49-111.25-179.79
+	c7.01-73.38,21.44-142.03,70.65-188.45c58.14,2.12,84.86-136.6,20.29-150.72l-113.04-8.7c-20.1-25.36-54.34-92.75-121.73-92.75
+	c-65.38-6.52-107.24,31.88-127.53,49.27L294.48,100.66z"/>
+<path style="fill:none;stroke:currentColor;stroke-width:28;stroke-linecap:round;stroke-miterlimit:10;" d="M311.16,405.1c45.38,54.93,132.67,24.36,159.96-23.41"/>
+<path style="fill:none;stroke:currentColor;stroke-width:28;stroke-linecap:round;stroke-miterlimit:10;" d="M516.5,381.69c40.6,69.26,118.66,52.74,118.66,52.74"/>
+<path style="fill:none;stroke:currentColor;stroke-width:18;stroke-linecap:round;stroke-miterlimit:10;" d="M235.61,225.67c74.33-1.94,75.56-69.37,75.56-69.37"/>
+<path style="fill:none;stroke:currentColor;stroke-width:18;stroke-linecap:round;stroke-miterlimit:10;" d="M445.04,190.98c58.84,80.15,139.88,31,139.88,31"/>
+<path style="fill:none;stroke:currentColor;stroke-width:18;stroke-linecap:round;stroke-miterlimit:10;" d="M697.75,246.87c-28.29,44.09,12.04,80.36,12.04,80.36"/>
+<path style="fill:none;stroke:currentColor;stroke-width:28;stroke-linecap:round;stroke-miterlimit:10;" d="M445.04,745.94c47.72,22.06,84.69,53.72,90.01,111.2c5.38-43.43,29.4-86.85,72.08-130.28"/>
+`
+
 }
