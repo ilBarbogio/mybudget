@@ -37,12 +37,18 @@ export const NAVIGATE="navigation-event"
 //calendar events
 export const MONTH_HIGHLIGHTED="month-into-view"
 
+//settings events
+export const GRAPHIC_SETTINGS_EVENT="graphic-settings"
+
+
 //KEYs
 //local storage
 export const LS_KEY_CURRENT_FILE="currentFile"
 
 export const LS_KEY_PLANNED_ENTRIES="planneEntries"
 export const LS_KEY_ACCEPTED_ENTRIES="acceptedProposedEntries"
+
+export const LS_KEY_GRAPHICS="graphicLevel"
 
 
 export const CURRENCY_SYMBOL="€"
@@ -98,6 +104,25 @@ export const seasonColors=[
   {background:"gold"},
 
   {background:"skyblue"},
+]
+
+export const seasonGradients=[
+  {background:"linear-gradient(356deg,rgba(135, 165, 235, 1) 0%, rgba(135, 206, 235, 1) 100%)"},
+  {background:"linear-gradient(356deg,rgba(135, 165, 235, 1) 0%, rgba(135, 206, 235, 1) 100%)"},
+
+  {background:"linear-gradient(356deg,rgba(0, 250, 12, 1) 0%, rgba(0, 250, 179, 1) 100%)"},
+  {background:"linear-gradient(356deg,rgba(0, 250, 12, 1) 0%, rgba(0, 250, 179, 1) 100%)"},
+  {background:"linear-gradient(356deg,rgba(0, 250, 12, 1) 0%, rgba(0, 250, 179, 1) 100%)"},
+
+  {background:"#linear-gradient(356deg,rgba(229, 141, 53, 1) 0%, rgba(229, 53, 53, 1) 100%)"},
+  {background:"#linear-gradient(356deg,rgba(229, 141, 53, 1) 0%, rgba(229, 53, 53, 1) 100%)"},
+  {background:"#linear-gradient(356deg,rgba(229, 141, 53, 1) 0%, rgba(229, 53, 53, 1) 100%)"},
+
+  {background:"linear-gradient(356deg,rgba(255, 215, 0, 1) 0%, rgba(255, 162, 0, 1) 100%)"},
+  {background:"linear-gradient(356deg,rgba(255, 215, 0, 1) 0%, rgba(255, 162, 0, 1) 100%)"},
+  {background:"linear-gradient(356deg,rgba(255, 215, 0, 1) 0%, rgba(255, 162, 0, 1) 100%)"},
+
+  {background:"linear-gradient(356deg,rgba(135, 165, 235, 1) 0%, rgba(135, 206, 235, 1) 100%)"},
 ]
 
 export const pageColors={

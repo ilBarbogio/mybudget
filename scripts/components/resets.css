@@ -104,10 +104,10 @@ dialog[open]::backdrop{
 
 
 .glass-card{
-  backdrop-filter: blur(5px);
-  background-color: #e1e1e1ad;
-  box-shadow: 0 .25rem .5rem rgba(0, 0, 0, 0.2);
-  border: 1px solid #c0c0c0;
+	backdrop-filter: var(--current-card-effect);
+	background-color: var(--current-card-background);
+	box-shadow: 0 .25rem .5rem rgba(0, 0, 0, 0.2);
+	border: 1px solid #c0c0c0;
 
-  border-radius:0 0 .5rem .5rem;
+	border-radius:0 0 .5rem .5rem;
 }

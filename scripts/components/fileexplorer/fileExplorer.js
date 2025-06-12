@@ -7,6 +7,7 @@ import {
   LOADED_DATA_FROM_FILE,
   UPLOADED_FILE_DATA_LEGACY
 } from "variables"
+import { LS_KEY_GRAPHICS, GRAPHIC_SETTINGS_EVENT } from "variables"
 
 const template=
 `
@@ -15,16 +16,23 @@ const template=
 
     <div class="extremity-padder"></div>
 
+
+    <div class="glass-card options">
+      <div class="header">Opzioni</div>
+      <div>
+        <span>Glass design</span>
+        <input class="graphic-checkbox" type="checkbox"/>
+      </div>
+    </div>
+
     <div class="glass-card file-list">
       <div class="header">File salvati</div>
       <div class="file-results"></div>
       <button class="load-button">
         <my-icon icon="refresh" color="black" size="4em 2em"></my-icon>
       </button>
-    </div>
 
-    <div class="glass-card file-creation">
-      <div class="header">Gestione file</div>
+      <div class="header" style="margin-top:1rem">Gestione file</div>
       <div class="header sub">Crea file</div>
       <form id="create-form">
         <span>
@@ -43,8 +51,8 @@ const template=
           <my-icon icon="upload" color="black" size="2em"></my-icon>
         </button>
       </form>
-    </div>
 
+    </div>
 
     <div class="extremity-padder"></div>
     
@@ -85,7 +93,14 @@ export class FileExplorer extends HTMLElement{
 
     this.container=this.shadow.querySelector(".container")
     this.list=this.container.querySelector("div.file-results")
-    
+
+    //settings
+    this.graphicCheckbox=this.container.querySelector(".graphic-checkbox")
+    const currentGraphicStyle=localStorage.getItem(LS_KEY_GRAPHICS)
+    if(currentGraphicStyle=="high") this.graphicCheckbox.setAttribute("checked",true)
+    else this.graphicCheckbox.removeAttribute("checked")
+
+    //file
     this.loadButton=this.container.querySelector("button.load-button")
 
     this.downloadDialog=this.container.querySelector(".download-dialog")
@@ -178,6 +193,16 @@ export class FileExplorer extends HTMLElement{
       let data=new FormData(this.uploadForm)
       let file=data.get("file")
       await parseDataFile(file)
+    })
+
+    this.graphicCheckbox.addEventListener("input",(ev)=>{
+      if(this.graphicCheckbox.checked){
+        const event=new CustomEvent(GRAPHIC_SETTINGS_EVENT,{detail:"high"})
+        window.dispatchEvent(event)
+      }else{
+        const event=new CustomEvent(GRAPHIC_SETTINGS_EVENT,{detail:"low"})
+        window.dispatchEvent(event)
+      }
     })
   }
 

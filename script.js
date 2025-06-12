@@ -1,5 +1,5 @@
 import { setupState, setupStateListeners, state } from "./scripts/data/state.js"
-import { LOADED_DATA_FROM_FILE, LS_KEY_CURRENT_FILE, MONTH_HIGHLIGHTED, NAVIGATE, pageColors, pages, seasonColors } from "./scripts/variables.js"
+import { GRAPHIC_SETTINGS_EVENT, LOADED_DATA_FROM_FILE, LS_KEY_CURRENT_FILE, LS_KEY_GRAPHICS, MONTH_HIGHLIGHTED, NAVIGATE, pageColors, pages, seasonColors, seasonGradients } from "./scripts/variables.js"
 import { buildCalendarPage, buildFileManagerPage, buildReportsPage, buildGoalsPage } from "./scripts/transitions.js"
 
 const registerServiceWorker = async () => {
@@ -25,6 +25,7 @@ const appSetup=async()=>{
   // await registerServiceWorker()
   // state.container=document.getElementById("container")
   await setupState()
+  setGraphics()
 
   setupStateListeners()
 
@@ -41,15 +42,28 @@ const appSetup=async()=>{
   //listen to visible month for background color changes
   window.addEventListener(MONTH_HIGHLIGHTED,(ev)=>{
     state.elements.container.style.backgroundColor=seasonColors[ev.detail].background
+    // state.elements.container.style.background=seasonGradients[ev.detail].background
   })
   state.elements.toolbar.addEventListener(NAVIGATE,(ev)=>{
     if(ev?.detail?.route) state.elements.container.style.backgroundColor=pageColors[ev.detail.route]
+  })
+
+  //listen for graphics
+  window.addEventListener(GRAPHIC_SETTINGS_EVENT,(ev)=>{
+    if(ev.detail=="high") localStorage.setItem(LS_KEY_GRAPHICS,"high")
+    else localStorage.removeItem(LS_KEY_GRAPHICS)
+    setGraphics()
   })
 }
 
 appSetup()
 
 
+function setGraphics(){
+  const graphic=localStorage.getItem(LS_KEY_GRAPHICS)
+  if(graphic=="high") document.body.classList.add("high-graphic")
+  else document.body.classList.remove("high-graphic")
+}
 
 function generateFakeData(){
   let id=1

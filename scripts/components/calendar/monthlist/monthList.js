@@ -1,5 +1,5 @@
 import { state } from "data/state.js"
-import { seasonColors, DELETE_ENTRY_EVENT, ADD_ENTRY_EVENT, UPDATE_ENTRY_EVENT, EVENT_ACTIONS } from "variables"
+import { seasonColors, seasonGradients, DELETE_ENTRY_EVENT, ADD_ENTRY_EVENT, UPDATE_ENTRY_EVENT, EVENT_ACTIONS } from "variables"
 
 const sanitizeNumber=(value)=>{
   return Math.floor(value*100)/100
@@ -185,6 +185,7 @@ export class MonthList extends HTMLElement{
   applyMonthColors(index){
     if(index!==undefined && this.month!==undefined && this.container){
       this.container.style.backgroundColor=seasonColors[index].month
+      // this.container.style.background=seasonGradients[index].month
       this.container.style.borderColor=seasonColors[index].montBorder
     }
   }

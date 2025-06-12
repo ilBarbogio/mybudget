@@ -88,9 +88,23 @@
     background-color: #add8e640;
   }
 }
+.file-creation > div{
+  display:flex;
+  align-items: center;
+  gap:1em;
+  width:100%;
+  box-sizing: border-box;
+  padding: .25em .5em;
+}
 
-.file-creation{
-  border-radius:.25em;
+.options > div:not(.header){
+  display:flex;
+  align-items: flex-start;
+  gap:1em;
+  width:100%;
+  box-sizing: border-box;
+  padding: .25em .5em;
+
 }
 
 form{
