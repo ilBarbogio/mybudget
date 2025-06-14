@@ -49,7 +49,7 @@
   left:calc(var(--area-left) + calc(.5 * var(--area-diameter)));
   transform:translate(-50%, 0);
   background-color: var(--strip-color);
-  background-image: url("../../../assets/black-linen.png");
+  background-image: var(--current-toolbar-background);
   clip-path: polygon(0 0, 0 100%, 50% calc(100% - 1.5em), 100% 100%, 100% 0);
 
   box-sizing: border-box;

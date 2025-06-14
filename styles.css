@@ -11,16 +11,20 @@
 :root{
   --glass-card-effect:blur(5px);
   --glass-card-background:#e1e1e1ad;
+  --glass-toolbar-background:url("../../../assets/black-linen.png");
 
   --none-card-effect:none;
   --none-card-background:#e1e1e1d1;
+  --none-toolbar-background:none;
   
   --current-card-effect:var(--none-card-effect);
   --current-card-background:var(--none-card-background);
+  --current-toolbar-background:var(--none-toolbar-background);
 
   &:has(body.high-graphic){
     --current-card-effect:var(--glass-card-effect);
     --current-card-background:var(--glass-card-background);
+    --current-toolbar-background:var(--glass-toolbar-background);
   }
 
 }
