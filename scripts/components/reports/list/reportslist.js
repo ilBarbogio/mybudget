@@ -36,8 +36,8 @@ export class ReportsList extends HTMLElement{
 
     this.list.innerHTML=`
     <div></div>
-    <my-icon icon="add"></my-icon>
-    <my-icon icon="subtract"></my-icon>
+    <my-icon icon="add" color="green" class="value"></my-icon>
+    <my-icon icon="subtract" color="red" class="value"></my-icon>
     `
 
     for(let k of recordMap.keys()){
@@ -69,46 +69,6 @@ export class ReportsList extends HTMLElement{
     negTotComp.className="value"
     negTotComp.innerHTML=totals[1]
     this.list.append(negTotComp)
-    
-    // let recordMap=Map.groupBy(records,el=>el.date.split("-")[1])
-    
-    // for(let k of recordMap.keys()){
-    //   let entries=Map.groupBy(recordMap.get(k),el=>el.date)
-    //   for(let kk of entries.keys()){
-    //     let subentries=entries.get(kk)
-    //     let dailyValue=subentries.reduce((acc,curr)=>acc+curr.value,0)
-    //     entries.set(kk, dailyValue)
-    //   }
-    //   recordMap.set(k,entries)
-    // }
-    
-    // let fullMap=new Map()
-    // let cumulated=0
-    // for(let [i,m] of (new Array(12)).entries()){
-    //   let k=(i+1).toString().padStart(2,"0")
-    //   if(recordMap.has(k)){
-    //     let dayValues=recordMap.get(k).values().toArray()
-    //     let dayProgr=(new Array(dayValues.length)).fill(0)
-    //     dayValues.reduce((acc,curr,i)=>{
-    //       dayProgr[i]=acc+curr
-    //       return acc+curr
-    //     },cumulated)
-    //     cumulated=dayProgr[dayProgr.length-1]
-    //     fullMap.set(i,{days:dayValues,progressives:dayProgr})
-    //   }else fullMap.set(i,{days:[],progressives:[]})
-    // }
-
-    
-
-    // records=records.map(el=>parseFloat(el.value))
-    // let progressive=(new Array(records.length)).fill(0)
-    // records.reduce((acc,curr,i)=>{
-    //   progressive[i]=acc+curr
-    //   return acc+curr
-    // },0)
-    // console.log(records)
-    // let min=Math.min(...progressive)
-    // let max=Math.max(...progressive)
     
   }
 

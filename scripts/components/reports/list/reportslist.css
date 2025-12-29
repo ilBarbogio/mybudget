@@ -5,8 +5,8 @@
 }
 .list{
   display: grid;
-  grid-template-columns: 4fr 1fr 1fr;
-  grid-template-rows: 2rem;
+  grid-template-columns: 1fr max-content max-content;
+  grid-template-rows: var(--budget-entry-height);
   align-items: center;
   width:100%;
   padding: 0 .5em;
@@ -24,5 +24,6 @@
   .value{
     white-space: nowrap;
     justify-self: flex-end;
+    padding:0 .5rem
   }
 }
