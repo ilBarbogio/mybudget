@@ -19,6 +19,13 @@ export const getMonthLength=(month,year)=>{
 export const sanitizeNumber=(value)=>{
   return Math.floor(value*100)/100
 }
+export const formatNumber=(value)=>{
+  const v=sanitizeNumber(value).toString()
+  if(v.includes(".")){
+    const splitted=v.split(".")
+    return `${splitted[0]}.${splitted[1].slice(0,2).padEnd(2,"0")}`
+  }else return `${v}.00`
+}
 
 export const dayDateFormat=(date)=>{
   // let split=date.split("-")

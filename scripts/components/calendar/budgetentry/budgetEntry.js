@@ -1,5 +1,6 @@
 import { dayDateFormat } from "utils"
 import { categories, CURRENCY_SYMBOL, DELETE_ENTRY_EVENT, EVENT_ACTIONS, UPDATE_ENTRY_EVENT } from "variables"
+import { formatNumber } from "../../../utils.js"
 
 const template=`
   <style>@import url("./scripts/components/calendar/budgetentry/budgetEntry.css")</style>
@@ -142,7 +143,7 @@ export class BudgetEntry extends HTMLElement{
 
   renderData(){
     this.setAttribute("id",`entry-${this._id}`)
-    if(this.valueDisplay) this.valueDisplay.innerHTML=`${this._value} ${CURRENCY_SYMBOL}`
+    if(this.valueDisplay) this.valueDisplay.innerHTML=`${formatNumber(this._value)} ${CURRENCY_SYMBOL}`
     if(this.causeDisplay) this.causeDisplay.innerHTML=this._cause
     
     if(this.categoryDisplay){

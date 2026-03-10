@@ -1,5 +1,6 @@
 import { state } from "data/state.js"
 import { categories } from "../../../variables.js"
+import { formatNumber, sanitizeNumber } from "../../../utils.js"
 
 const template=
 `
@@ -49,12 +50,12 @@ export class ReportsList extends HTMLElement{
 
       let pos=document.createElement("div")
       pos.className="value"
-      pos.innerHTML=recordMap.get(k)[0]
+      pos.innerHTML=formatNumber(recordMap.get(k)[0])
       this.list.append(pos)
 
       let neg=document.createElement("div")
       neg.className="value"
-      neg.innerHTML=recordMap.get(k)[1]
+      neg.innerHTML=formatNumber(recordMap.get(k)[1])
       this.list.append(neg)
     }
 
