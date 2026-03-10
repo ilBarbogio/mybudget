@@ -4,7 +4,6 @@ export const APP_VERSION="01.00.00"
 //toggle calls
 export const TOGGLE_SIDEBAR_EVENT="toggle-main-sidebar"
 export const TOGGLE_RECORD_INPUT_EVENT="toggle-entry-input"
-export const TOGGLE_QRCODE_DIALOG_EVENT="toggle-qrcode-dialog"
 
 //action calls: request, act, confirm
 export const ADD_ENTRY_EVENT="add-entry"

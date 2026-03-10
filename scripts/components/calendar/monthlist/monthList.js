@@ -1,5 +1,5 @@
 import { state } from "data/state.js"
-import { seasonColors, seasonGradients, DELETE_ENTRY_EVENT, ADD_ENTRY_EVENT, UPDATE_ENTRY_EVENT, TOGGLE_QRCODE_DIALOG_EVENT, EVENT_ACTIONS } from "variables"
+import { seasonColors, DELETE_ENTRY_EVENT, ADD_ENTRY_EVENT, UPDATE_ENTRY_EVENT, EVENT_ACTIONS } from "variables"
 
 const sanitizeNumber=(value)=>{
   return Math.floor(value*100)/100
@@ -16,11 +16,6 @@ const template=
     <div class="actions">
       <button class="add-button">
         <my-icon size="6em 2em" icon="add"></my-icon>
-      </button>
-    </div>
-    <div class="actions qr">
-      <button class="qr-button">
-        <my-icon size="2em 2em" icon="qrcode"></my-icon>
       </button>
     </div>
   </div>
@@ -48,7 +43,6 @@ export class MonthList extends HTMLElement{
     this.list=this.container.querySelector(".list")
     this.footer=this.container.querySelector(".footer")
     this.addButton=this.container.querySelector(".add-button")
-    this.qrButton=this.container.querySelector(".qr-button")
 
     this.mounted=true
     this.setupListeners()
@@ -70,10 +64,6 @@ export class MonthList extends HTMLElement{
         action:EVENT_ACTIONS.request,
         month:this.month
       }})
-      window.dispatchEvent(event)
-    })
-    this.qrButton.addEventListener("click",(ev)=>{
-      const event=new CustomEvent(TOGGLE_QRCODE_DIALOG_EVENT ,{detail:this._records})
       window.dispatchEvent(event)
     })
   }

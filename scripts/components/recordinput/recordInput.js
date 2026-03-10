@@ -82,8 +82,6 @@ const template=
 
     <dialog class="category-input"></dialog>
 
-    <number-keyboard></number-keyboard>
-
   </div>
 `
 export class RecordInput extends HTMLElement{
@@ -145,8 +143,6 @@ export class RecordInput extends HTMLElement{
     
     this.categoryDisplay=this.inputContainer.querySelector(".category-display")
     this.categoryInput=this.shadow.querySelector(".category-input")
-    
-    this.numberKeyboard=this.shadow.querySelector("number-keyboard")
 
     this.closeButton=this.inputContainer.querySelector(".close.button")
 
@@ -277,15 +273,8 @@ export class RecordInput extends HTMLElement{
       this.categoryInput.close()
     })
     this.categoryDisplay.addEventListener("click",(ev)=>{
-      // this.categoryInput.showModal()
-      this.numberKeyboard.show()
+      this.categoryInput.showModal()
     })
-
-    //aprire tastiera numerica
-    // this.numberKeyboard.addEventListener("click",(ev)=>{
-    //   ev.stopPropagation()
-    //   this.numberKeyboard.close()
-    // })
 
     this.form.addEventListener("submit",(ev)=>{
       ev.preventDefault()
