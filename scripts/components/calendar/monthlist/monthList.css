@@ -52,10 +52,13 @@
   margin-top:1em;
 }
 .actions{
-  width:100%;
   display:flex;
   justify-content:center;
-  margin:1rem auto 2rem auto;
+  margin:1rem auto .5rem auto;
+  &.qr{
+    margin:0 1rem 2rem 0;
+    justify-content: flex-end; 
+  }
 }
 
 .entry{

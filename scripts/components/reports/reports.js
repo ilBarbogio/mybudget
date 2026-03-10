@@ -8,7 +8,8 @@ const template=
   <div class="container">
     <div class="glass-card">
       <div class="header">Report</div>
-      <div class="graph"></div>
+      <div class="list"></div>
+      <!-- <div class="graph"></div> -->
     </div>
   </div>
 `
@@ -23,8 +24,11 @@ export class ReportsPage extends HTMLElement{
 
     this.card=this.shadow.querySelector(".glass-card")
 
-    this.graph=this.shadow.querySelector(".graph")
-    this.graph.innerHTML=`<reports-board width="${this.graph.getBoundingClientRect().width}" height="200"></reports-board>`
+    // this.graph=this.shadow.querySelector(".graph")
+    // this.graph.innerHTML=`<reports-board width="${this.graph.getBoundingClientRect().width}" height="200"></reports-board>`
+
+    this.graph=this.shadow.querySelector(".list")
+    this.graph.innerHTML=`<reports-list></reports-list>`
   }
 
   setupListeners(){

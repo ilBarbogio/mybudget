@@ -1,0 +1,28 @@
+:host{
+  display:block;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.list{
+  display: grid;
+  grid-template-columns: 4fr 1fr 1fr;
+  grid-template-rows: 2rem;
+  align-items: center;
+  width:100%;
+  padding: 0 .5em;
+  gap: .5em;
+
+  line-height: var(--budget-entry-height);
+
+  .category{
+    grid-column:1;
+    width:1.5em;
+    height:1.5em;
+    line-height: 1.5em;
+  }
+  
+  .value{
+    white-space: nowrap;
+    justify-self: flex-end;
+  }
+}

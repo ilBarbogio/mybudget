@@ -9,6 +9,9 @@ import {
 } from "variables"
 import { LS_KEY_GRAPHICS, GRAPHIC_SETTINGS_EVENT } from "variables"
 
+import {qrcode} from "../../qrcodegen.js"
+import { qrAlphanumericLowErrorCapacity } from "../../variables.js"
+
 const template=
 `
   <style>@import url("./scripts/components/fileexplorer/fileExplorer.css")</style>
@@ -22,6 +25,7 @@ const template=
       <div>
         <span>Glass design</span>
         <input class="graphic-checkbox" type="checkbox"/>
+        <div id="qrcode"></div>
       </div>
     </div>
 
@@ -99,6 +103,16 @@ export class FileExplorer extends HTMLElement{
     const currentGraphicStyle=localStorage.getItem(LS_KEY_GRAPHICS)
     if(currentGraphicStyle=="high") this.graphicCheckbox.setAttribute("checked",true)
     else this.graphicCheckbox.removeAttribute("checked")
+
+    //   qrcode
+    const testdata=`
+    {"user":"ilbarbogio","year":"2025","records":[{"value":25,"date":"2025-05-05","cause":"più settimanale","id":1},{"value":-20,"date":"2025-05-28","cause":"meno giornaliero","category":"2","id":2},{"value":-20,"date":"2025-05-26","cause":"meno giornaliero","category":"18","id":3},{"value":-20,"date":"2025-05-31","cause":"meno giornaliero","id":4},{"value":34,"date":"2025-02-10","cause":"dfsdf","id":5},{"value":-22,"date":"2025-02-04","cause":"q123r2","id":6},{"value":-50,"date":"2025-05-26","cause":"sffsds","category":"18","id":7},{"value":100,"date":"2025-03-18","cause":"compnesazione","id":8},{"value":-45,"date":"2025-09-23","cause":"meno","category":"6","id":9}],"planned":[]}
+  `
+      let errorCorrectionLevel = 'M'
+      let qr = qrcode(0, errorCorrectionLevel)
+      qr.addData(testdata)
+      qr.make()
+      this.container.querySelector('#qrcode').innerHTML = qr.createImgTag()
 
     //file
     this.loadButton=this.container.querySelector("button.load-button")

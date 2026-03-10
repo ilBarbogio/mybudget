@@ -4,6 +4,7 @@ export const APP_VERSION="01.00.00"
 //toggle calls
 export const TOGGLE_SIDEBAR_EVENT="toggle-main-sidebar"
 export const TOGGLE_RECORD_INPUT_EVENT="toggle-entry-input"
+export const TOGGLE_QRCODE_DIALOG_EVENT="toggle-qrcode-dialog"
 
 //action calls: request, act, confirm
 export const ADD_ENTRY_EVENT="add-entry"
@@ -132,3 +133,46 @@ export const pageColors={
 }
 
 export const plannedLookaround=3
+
+export const qrAlphanumericLowErrorCapacity=[
+  [1,	  25],
+  [2,	  47],
+  [3,	  77],
+  [4,	  114],
+  [5,	  154],
+  [6,	  195],
+  [7,	  224],
+  [8,	  279],
+  [9,	  335],
+  [10,  395],
+  [11,  468],
+  [12,  535],
+  [13,  619],
+  [14,  667],
+  [15,  758],
+  [16,  854],
+  [17,  938],
+  [18,  1046],
+  [19,  1153],
+  [20,  1249],
+  [21,  1352],
+  [22,  1460],
+  [23,  1588],
+  [24,  1704],
+  [25,  1853],
+  [26,  1990],
+  [27,  2132],
+  [28,  2223],
+  [29,  2369],
+  [30,  2520],
+  [31,  2677],
+  [32,  2840],
+  [33,  3009],
+  [34,  3183],
+  [35,  3351],
+  [36,  3537],
+  [37,  3729],
+  [38,  3927],
+  [39,  4087],
+  [40,  4296]
+]

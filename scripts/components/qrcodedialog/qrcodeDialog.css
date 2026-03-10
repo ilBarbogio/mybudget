@@ -17,12 +17,7 @@
 .container.open{
   bottom:0;
 }
-.container.positive{
-  background-color:  #3eff3e66;
-}
-.container.negative{
-  background-color:  #ffb6c166;
-}
+
 .input-container{
   position:absolute;
   top:50%;
@@ -41,6 +36,9 @@
   border:1px solid gray;
 }
 
+.row{
+  
+}
 
 .first-row,
 .last-row{
@@ -57,62 +55,4 @@
   &.close{
     width:4em;
   }
-}
-
-.number-input{
-  width:90%;
-  height:2em;
-  margin: .5em auto;
-}
-
-.category-display{
-  width:2em;
-  height:2em;
-}
-
-.category-input{
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  /* width:13em;
-  border-radius:.5em; */
-
-  /* &::backdrop{
-    backdrop-filter:blur(4px);
-  } */
-}
-
-.number-keyboard{
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  
-
-}
-
-.cause-input{
-  display:flex;
-  width:90%;
-  margin: .5em auto;
-}
-
-.input-group{
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  width:100%;
-  margin: .5em auto;
-  &.hidden{
-    visibility:hidden;
-    height:0;
-    overflow: hidden;
-  }
-}
-.date-input{
-}
-
-.button.save{
-}
-.button.close{
 }

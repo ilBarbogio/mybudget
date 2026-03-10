@@ -10,12 +10,16 @@ import { BudgetEntry} from "./components/calendar/budgetentry/budgetEntry.js"
 
 import { RecordInput } from "./components/recordinput/recordInput.js"
 
+import { QrcodeDialog } from "./components/qrcodedialog/qrcodeDialog.js"
+
 import { ReportsPage } from "./components/reports/reports.js"
 import { ReportsBoard } from "./components/reports/board/reportsboard.js"
+import { ReportsList } from "./components/reports/list/reportslist.js"
 
 import { GoalsPage } from "./components/goals/goalsPage.js"
 import { PlannedEntry } from "./components/goals/plannedentry/plannedEntry.js"
 import { GeneratedList } from "./components/goals/generatedlist/generatedList.js"
+import { NumberKeyboard } from "./components/numberkeyboard/numberKeyboard.js"
 
 
 customElements.define("main-toolbar",MainToolbar)
@@ -29,8 +33,13 @@ customElements.define("month-list",MonthList)
 customElements.define("budget-entry",BudgetEntry)
 customElements.define("record-input",RecordInput)
 
+customElements.define("number-keyboard",NumberKeyboard)
+
+customElements.define("qrcode-dialog",QrcodeDialog)
+
 customElements.define("reports-page",ReportsPage)
 customElements.define("reports-board",ReportsBoard)
+customElements.define("reports-list",ReportsList)
 
 customElements.define("goals-page",GoalsPage)
 customElements.define("planned-entry",PlannedEntry)

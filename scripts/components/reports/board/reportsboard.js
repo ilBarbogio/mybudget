@@ -62,7 +62,7 @@ export class ReportsBoard extends HTMLElement{
       progressive[i]=acc+curr
       return acc+curr
     },0)
-    
+    console.log(records)
     let min=Math.min(...progressive)
     let max=Math.max(...progressive)
     let ratio=(this.width*.5)/Math.max(Math.abs(min),Math.abs(max))*.9
